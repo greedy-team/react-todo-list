@@ -1,19 +1,16 @@
-import { Checkbox } from '@mui/material';
+import TodoButton from '../Button/Todo/TodoButton';
+import { MdCheckBoxOutlineBlank } from 'react-icons/md';
+import { MdCheckBox } from 'react-icons/md';
 import colors from '../../color/color';
 
-const TodoCheckbox = ({ checked, onChange }) => {
-  return (
-    <Checkbox
-      checked={checked}
-      onChange={onChange}
-      sx={{
-        color: colors.grey,
-        '&.Mui-checked': {
-          color: colors.green,
-        },
-      }}
+export const TodoCheckbox = ({ checked, onChange }) => {
+  return checked ? (
+    <TodoButton onClick={''} icon={MdCheckBox} iconColor={colors.green} />
+  ) : (
+    <TodoButton
+      onClick={''}
+      icon={MdCheckBoxOutlineBlank}
+      iconColor={colors.grey}
     />
   );
 };
-
-export default TodoCheckbox;

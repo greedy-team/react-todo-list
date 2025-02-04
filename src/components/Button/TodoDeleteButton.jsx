@@ -1,7 +1,15 @@
-import DeleteIcon from '@mui/icons-material/Delete';
+import { MdRemoveCircleOutline } from 'react-icons/md';
+import TodoButton from './Todo/TodoButton';
+import colors from '../../color/color';
 
 const TodoDeleteButton = ({ onDelete }) => {
-  return <DeleteIcon onClick={onDelete} style={{ cursor: 'pointer' }} />;
+  return (
+    <TodoButton
+      onClick={onDelete}
+      icon={MdRemoveCircleOutline}
+      iconColor={colors.grey}
+    />
+  );
 };
 
 export default TodoDeleteButton;

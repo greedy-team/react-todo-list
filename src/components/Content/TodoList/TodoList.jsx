@@ -1,26 +1,31 @@
-import TodoContent from '../TodoContent/TodoContent';
+import TodoListItem from '../TodoListItem/TodoListItem';
 import { TodoListLayout } from './TodoList.styles';
 
 const TODODATA = [
   {
-    isChecked: true,
-    todoName: '리액트 공부하기',
+    id: 1,
+    checked: true,
+    text: `할 일`,
   },
   {
-    isChecked: true,
-    todoName: '리액트 공부하기',
+    id: 2,
+    checked: true,
+    text: `할 일`,
   },
   {
-    isChecked: true,
-    todoName: '리액트 공부하기',
+    id: 3,
+    checked: true,
+    text: `할 일`,
   },
 ];
 
 const TodoList = () => {
   return (
     <TodoListLayout>
-      {TODODATA.map(() => {
-        return <TodoContent />;
+      {TODODATA.map((todo) => {
+        return (
+          <TodoListItem id={todo.id} checked={todo.checked} text={todo.text} />
+        );
       })}
     </TodoListLayout>
   );

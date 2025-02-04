@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const TodoContentContainer = styled.div`
+export const TodoListItemContainer = styled.div`
   width: 37.5rem;
-  height: 3.125rem;
+  height: 2.5rem;
   background-color: white;
   border-radius: 0.25rem;
   border: 1px solid #ebedf0;
@@ -11,14 +11,15 @@ export const TodoContentContainer = styled.div`
   justify-content: space-between;
   padding: 1rem;
   gap: 0.75rem;
-
-  & > svg {
-    color: #8e8e93;
-  }
 `;
 
-export const TodoContentBox = styled.div`
+export const TodoListItemBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 1rem;
+
+  & p {
+    font-size: 0.85rem;
+  }
 `;
