@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TodoInsertContainer = styled.form`
+export const TodoInsertContainer = styled.div`
   width: 37.5rem;
   height: 4rem;
   gap: 1rem;

@@ -2,9 +2,9 @@ import { MdAdd } from 'react-icons/md';
 import TodoButton from './Todo/TodoButton';
 import colors from '../../color/color';
 
-const TodoAddButton = ({ onDelete }) => {
+const TodoAddButton = ({ onAddTodo }) => {
   return (
-    <TodoButton onClick={onDelete} icon={MdAdd} iconColor={colors.green} />
+    <TodoButton onClick={onAddTodo} icon={MdAdd} iconColor={colors.green} />
   );
 };
 

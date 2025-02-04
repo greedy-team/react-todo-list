@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyledTodoInput } from './TodoInputField.styles';
 
-const TodoInputField = ({ todoName }) => {
+const TodoInputField = ({ text, setText }) => {
   return (
     <StyledTodoInput
-      onChange={''}
       name="todo"
-      value={todoName}
+      value={text}
+      onChange={(e) => setText(e.target.value)}
       placeholder="할 일을 입력해주세요"
     />
   );

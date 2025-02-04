@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TodoInputField from '../../InputField/TodoInputField';
 import {
   TodoInsertContainer,
@@ -6,13 +6,23 @@ import {
 } from './TodoInsert.styles';
 import TodoAddButton from '../../Button/TodoAddButton';
 
-const TodoInsert = () => {
+const TodoInsert = ({ onAddTodo }) => {
+  const [text, setText] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAddTodo(text);
+    setText('');
+  };
+
   return (
     <TodoInsertContainer>
-      <StyledTodoInsertLabel>
-        <TodoInputField />
-        <TodoAddButton />
-      </StyledTodoInsertLabel>
+      <form onSubmit={handleSubmit}>
+        <StyledTodoInsertLabel>
+          <TodoInputField text={text} setText={setText} />
+          <TodoAddButton />
+        </StyledTodoInsertLabel>
+      </form>
     </TodoInsertContainer>
   );
 };
