@@ -10,4 +10,5 @@ export const TodoListLayout = styled.div`
   height: 50vh;
   background-color: white;
   border-radius: 0.5rem;
+  overflow-y: scroll;
 `;

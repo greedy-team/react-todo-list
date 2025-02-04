@@ -8,4 +8,5 @@ export const TodoContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: ${colors.amber};
+  border-radius: 1rem;
 `;

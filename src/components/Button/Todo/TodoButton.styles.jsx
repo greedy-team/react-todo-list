@@ -23,6 +23,6 @@ export const StyledIcon = styled.div`
   svg {
     width: 1.25rem;
     height: 1.25rem;
-    color: ${({ color }) => color || 'black'};
+    color: ${({ color }) => color || colors.grey};
   }
 `;
