@@ -2,14 +2,20 @@ import styled from "styled-components";
 import TodoListItem from "./TodoListItem.jsx";
 
 const TodoListContainer = styled.div`
-    max-height: 512px;
+    max-height: 465px;
     overflow-y: auto;
-    background: none;
+    background: #fff;
     padding: 1rem;
+    box-sizing: border-box;
     border-radius: 4px;
 
     &::-webkit-scrollbar {
         width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
     }
 `;
 

@@ -12,6 +12,7 @@ const TodoItemContainer = styled.div`
     padding: 0.5rem;
     border-radius: 4px;
     margin-bottom: 0.5rem;
+    height: 48px;
 `;
 
 const CheckButton = styled.button`
