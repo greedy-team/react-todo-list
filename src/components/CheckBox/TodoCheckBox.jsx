@@ -3,16 +3,16 @@ import { MdCheckBoxOutlineBlank } from 'react-icons/md';
 import { MdCheckBox } from 'react-icons/md';
 import colors from '../../color/color';
 
-export const TodoCheckbox = ({ checked, onCheckedTodo, id }) => {
+export const TodoCheckbox = ({ checked, onCheckTodo, id }) => {
   return checked ? (
     <TodoButton
-      onClick={() => onCheckedTodo(id)}
+      onClick={() => onCheckTodo(id)}
       icon={MdCheckBox}
       iconColor={colors.green}
     />
   ) : (
     <TodoButton
-      onClick={() => onCheckedTodo(id)}
+      onClick={() => onCheckTodo(id)}
       icon={MdCheckBoxOutlineBlank}
       iconColor={colors.grey}
     />

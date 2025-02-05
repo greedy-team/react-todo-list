@@ -1,7 +1,7 @@
 import TodoListItem from '../TodoListItem/TodoListItem';
 import { TodoListLayout } from './TodoList.styles';
 
-const TodoList = ({ todoList, onDeleteTodo, onCheckedTodo }) => {
+const TodoList = ({ todoList, onDeleteTodo, onCheckTodo }) => {
   return (
     <TodoListLayout>
       {todoList.map((todo) => {
@@ -11,7 +11,7 @@ const TodoList = ({ todoList, onDeleteTodo, onCheckedTodo }) => {
             checked={todo.checked}
             text={todo.text}
             onDeleteTodo={onDeleteTodo}
-            onCheckedTodo={onCheckedTodo}
+            onCheckTodo={onCheckTodo}
           />
         );
       })}

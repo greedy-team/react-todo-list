@@ -3,11 +3,11 @@ import { TodoCheckbox } from '../../CheckBox/TodoCheckBox';
 import TodoDeleteButton from '../../Button/TodoDeleteButton';
 import { TodoListItemContainer, TodoListItemBox } from './TodoListItem.styles';
 
-const TodoListItem = ({ id, text, checked, onDeleteTodo, onCheckedTodo }) => {
+const TodoListItem = ({ id, text, checked, onDeleteTodo, onCheckTodo }) => {
   return (
     <TodoListItemContainer>
       <TodoListItemBox>
-        <TodoCheckbox checked={checked} onCheckedTodo={onCheckedTodo} id={id} />
+        <TodoCheckbox checked={checked} onCheckTodo={onCheckTodo} id={id} />
         <p>{text}</p>
       </TodoListItemBox>
       <TodoDeleteButton onDeleteTodo={onDeleteTodo} id={id} />
