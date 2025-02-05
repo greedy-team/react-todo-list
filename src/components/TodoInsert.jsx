@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FaPlus } from "react-icons/fa6";
+import {useState} from "react";
 
 const TodoForm = styled.form`
     background: #495057;
@@ -19,6 +20,11 @@ const TodoInput = styled.input`
     outline: none;
     width: 100%;
     margin-left: 0.5rem;
+
+    &::placeholder {
+        color: #fff;
+        opacity: 1;
+    }
 `;
 
 const TodoAddButton = styled.button`
@@ -26,6 +32,10 @@ const TodoAddButton = styled.button`
     border: none;
     width: 48px;
     height: 48px;
+
+    &:hover {
+        opacity: 0.8;
+    }
 `;
 
 const PlusIcon = styled(FaPlus)`
@@ -34,10 +44,28 @@ const PlusIcon = styled(FaPlus)`
     font-size: 1.2rem;
 `;
 
-const TodoInsert = () => {
+const TodoInsert = ( {onInsert} ) => {
+    const [value, setValue] = useState("");
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (value.trim() === "")
+            return;
+        onInsert(value);
+        setValue("");
+    };
+
+    const onChange = (e) => {
+        setValue(e.target.value); // 입력값 업데이트
+    };
+
     return (
-        <TodoForm>
-            <TodoInput placeholder="할 일을 입력하세요."></TodoInput>
+        <TodoForm onSubmit={onSubmit}>
+            <TodoInput
+                placeholder="할 일을 입력하세요."
+                value={value}
+                onChange={onChange}
+            />
             <TodoAddButton type="submit">
                 <PlusIcon />
             </TodoAddButton>

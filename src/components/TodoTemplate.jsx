@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import GreedySquareImage from "../assets/greedySquareImage.jpg"
-import TodoInsert from "./TodoInsert.jsx";
 
 const Container = styled.div`
     border-radius: 4px;
@@ -44,7 +43,7 @@ const Contents = styled.div`
     height: 512px;
 `;
 
-const TodoTemplate = () => {
+const TodoTemplate = ( {children} ) => {
     return (
         <Container>
             <HeaderContainer>
@@ -52,7 +51,7 @@ const TodoTemplate = () => {
                 <Title>일정관리</Title>
             </HeaderContainer>
             <Contents>
-                <TodoInsert></TodoInsert>
+                {children}
             </Contents>
         </Container>
     );
