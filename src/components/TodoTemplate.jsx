@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import GreedySquareImage from "../assets/greedySquareImage.jpg"
 
+const Container = styled.div`
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6rem;
+    overflow: hidden;
+    width: 512px;
+`;
+
 const HeaderContainer = styled.div`
     align-items: center;
     background: #007356;
@@ -13,20 +22,36 @@ const HeaderContainer = styled.div`
 `;
 
 const Title = styled.div`
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
 `;
 
 const GreedyImage = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 4rem;
+    height: 4rem;
     object-fit: cover;
+`;
+
+const Contents = styled.div`
+    background: #fff;
+    display: block;
 `;
 
 const TodoTemplate = () => {
     return (
-        <HeaderContainer>
-            <GreedyImage src={GreedySquareImage} />
-            <Title>일정관리</Title>
-        </HeaderContainer>
+        <Container>
+            <HeaderContainer>
+                <GreedyImage src={GreedySquareImage} />
+                <Title>일정관리</Title>
+            </HeaderContainer>
+            <Contents>
+
+            </Contents>
+        </Container>
     );
 }
 
