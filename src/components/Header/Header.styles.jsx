@@ -13,7 +13,7 @@ export const HeaderContainer = styled.header`
   background-color: ${colors.green};
 `;
 
-export const Title = styled.p`
+export const Title = styled.h2`
   color: white;
-  font-size: 1rem;
+  font-size: 1.2rem;
 `;

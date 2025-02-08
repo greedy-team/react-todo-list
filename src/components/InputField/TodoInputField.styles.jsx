@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledTodoInput = styled.input`
-  width: 37.25rem;
+  width: 30rem;
   height: 2.5rem;
   display: flex;
   align-items: center;
