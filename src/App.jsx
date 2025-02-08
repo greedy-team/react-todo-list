@@ -34,7 +34,7 @@ const App = () => {
     setTodoList((prev) => prev.filter((todo) => todo.id !== id));
   };
 
-  const handleCheckTodo = (id) => {
+  const toggleTodoChecked = (id) => {
     setTodoList((prev) =>
       prev.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
@@ -49,7 +49,7 @@ const App = () => {
         <TodoInsert onAddTodo={handleAddTodo} />
         <TodoList
           todoList={todoList}
-          onCheckTodo={handleCheckTodo}
+          onCheckTodo={toggleTodoChecked}
           onDeleteTodo={handleDeleteTodo}
         />
       </TodoTemplate>
