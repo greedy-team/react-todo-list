@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const TodoListItemContainer = styled.div`
-  width: 37.5rem;
+  width: 36rem;
   height: 2.5rem;
   background-color: white;
   border-radius: 0.25rem;

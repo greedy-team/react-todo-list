@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import TodoInputField from '../../InputField/TodoInputField';
-import {
-  TodoInsertContainer,
-  StyledTodoInsertLabel,
-} from './TodoInsert.styles';
+import { StyledTodoForm } from './TodoInsert.styles';
 import TodoAddButton from '../../Button/TodoAddButton';
 
 const TodoInsert = ({ onAddTodo }) => {
@@ -11,19 +8,17 @@ const TodoInsert = ({ onAddTodo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     onAddTodo(text);
     setText('');
   };
 
   return (
-    <TodoInsertContainer>
-      <form onSubmit={handleSubmit}>
-        <StyledTodoInsertLabel>
-          <TodoInputField text={text} setText={setText} />
-          <TodoAddButton />
-        </StyledTodoInsertLabel>
-      </form>
-    </TodoInsertContainer>
+    <StyledTodoForm onSubmit={handleSubmit}>
+      <label htmlFor="name">할일 추가</label>
+      <TodoInputField text={text} setText={setText} />
+      <TodoAddButton />
+    </StyledTodoForm>
   );
 };
 
