@@ -8,7 +8,7 @@ const TodoListItem = ({ id, text, checked, onDeleteTodo, onCheckTodo }) => {
     <TodoListItemContainer>
       <TodoListItemBox>
         <TodoCheckbox checked={checked} onCheckTodo={onCheckTodo} id={id} />
-        <p>{text}</p>
+        <label>{text}</label>
       </TodoListItemBox>
       <TodoDeleteButton onDeleteTodo={onDeleteTodo} id={id} />
     </TodoListItemContainer>

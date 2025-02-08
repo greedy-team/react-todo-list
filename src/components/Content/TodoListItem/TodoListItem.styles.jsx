@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TodoListItemContainer = styled.div`
+export const TodoListItemContainer = styled.li`
   width: 36rem;
   height: 2.5rem;
   background-color: white;
@@ -19,7 +19,7 @@ export const TodoListItemBox = styled.div`
   align-items: center;
   gap: 1rem;
 
-  & p {
+  & > label {
     font-size: 0.85rem;
   }
 `;

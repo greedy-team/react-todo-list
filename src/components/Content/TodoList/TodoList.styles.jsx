@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TodoListLayout = styled.div`
+export const TodoListLayout = styled.ul`
   padding: 1rem;
   display: flex;
   flex-direction: column;

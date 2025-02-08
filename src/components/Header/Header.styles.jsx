@@ -7,9 +7,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.75rem;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-radius: 0.75rem 0.75rem 0 0;
   background-color: ${colors.green};
 `;
 
