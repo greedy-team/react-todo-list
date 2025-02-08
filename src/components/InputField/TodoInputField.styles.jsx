@@ -9,5 +9,4 @@ export const StyledTodoInput = styled.input`
   background-color: white;
   border: none;
   border-radius: 0.5rem;
-  outline: none;
 `;
