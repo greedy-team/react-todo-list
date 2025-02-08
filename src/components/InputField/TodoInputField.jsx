@@ -7,7 +7,7 @@ const TodoInputField = ({ text, setText }) => {
       type="text"
       name="todo"
       value={text}
-      maxLength="50"
+      maxLength="30"
       onChange={(e) => setText(e.target.value)}
       placeholder="할 일을 입력해주세요"
       required
