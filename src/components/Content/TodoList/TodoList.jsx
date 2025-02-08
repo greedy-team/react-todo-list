@@ -7,6 +7,7 @@ const TodoList = ({ todoList, onDeleteTodo, onCheckTodo }) => {
       {todoList.map((todo) => {
         return (
           <TodoListItem
+            key={todo.id}
             id={todo.id}
             checked={todo.checked}
             text={todo.text}
