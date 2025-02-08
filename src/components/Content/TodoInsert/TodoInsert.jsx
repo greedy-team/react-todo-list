@@ -15,7 +15,7 @@ const TodoInsert = ({ onAddTodo }) => {
 
   return (
     <StyledTodoForm onSubmit={handleSubmit}>
-      <label htmlFor="name">할일 추가</label>
+      <label htmlFor="todo">할일 추가</label>
       <TodoInputField text={text} setText={setText} />
       <TodoAddButton />
     </StyledTodoForm>
