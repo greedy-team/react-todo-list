@@ -8,6 +8,7 @@ const TodoDeleteButton = ({ id, onDeleteTodo }) => {
       onClick={() => onDeleteTodo(id)}
       icon={MdRemoveCircleOutline}
       iconColor={colors.grey}
+      ariaLabel="할일 삭제 버튼"
     />
   );
 };

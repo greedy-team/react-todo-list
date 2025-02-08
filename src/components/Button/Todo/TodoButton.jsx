@@ -1,8 +1,8 @@
 import { StyledButton, StyledIcon } from './TodoButton.styles';
 
-const TodoButton = ({ onClick, icon: Icon, iconColor }) => {
+const TodoButton = ({ onClick, icon: Icon, iconColor, ariaLabel, title }) => {
   return (
-    <StyledButton onClick={onClick}>
+    <StyledButton onClick={onClick} aria-label={ariaLabel} title={title}>
       <StyledIcon color={iconColor}>
         <Icon />
       </StyledIcon>
