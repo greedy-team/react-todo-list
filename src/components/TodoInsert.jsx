@@ -23,7 +23,7 @@ const TodoInput = styled.input`
 
     &::placeholder {
         color: #fff;
-        opacity: 1;
+        //opacity: 1;
     }
 `;
 
