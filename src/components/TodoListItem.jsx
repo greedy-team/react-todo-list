@@ -12,6 +12,7 @@ const TodoItemContainer = styled.div`
     padding: 0.5rem;
     border-radius: 4px;
     margin-bottom: 0.5rem;
+    height: 48px;
 `;
 
 const CheckButton = styled.button`
@@ -30,10 +31,13 @@ const CheckButton = styled.button`
 `;
 
 const TodoTask = styled.div`
-    flex: 1; /* 할 일 텍스트가 자동으로 크기를 조절하도록 설정 */
+    flex: 1;
     color: #000;
     font-size: 1.125rem;
+    text-align: center;
     padding: 0 1rem;
+    text-decoration: ${({ $checked }) => ($checked ? 'line-through' : 'none')};
+    opacity: ${({ $checked }) => ($checked ? 0.6 : 1)};
 `;
 
 const RemoveButton = styled.button`
@@ -72,9 +76,9 @@ const TodoListItem = ({ todo, onRemove, onCheck }) => {
     return (
         <TodoItemContainer>
             <CheckButton onClick={() => onCheck(id)}>
-                {checked ? <CheckIcon /> : <UncheckIcon />} {/* 체크 상태에 따라 아이콘 변경 */}
+                {checked ? <CheckIcon /> : <UncheckIcon />}
             </CheckButton>
-            <TodoTask>{task}</TodoTask>
+            <TodoTask $checked={checked}>{task}</TodoTask>
             <RemoveButton onClick={() => onRemove(id)}>
                 <RemoveIcon />
             </RemoveButton>
