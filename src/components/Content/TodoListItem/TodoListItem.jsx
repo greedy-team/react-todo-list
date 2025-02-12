@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { TodoCheckbox } from '../../CheckBox/TodoCheckBox';
 import TodoDeleteButton from '../../Button/TodoDeleteButton';
 import { TodoListItemContainer, TodoListItemBox } from './TodoListItem.styles';

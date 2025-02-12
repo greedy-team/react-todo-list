@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import TodoTemplate from './app/todo/TodoTemplate';
 import styled from 'styled-components';
 import Header from './components/Header/Header';
@@ -14,33 +14,45 @@ export const MainLayout = styled.main`
   background-color: #bdbfc1;
 `;
 
-const App = () => {
-  const [todoList, setTodoList] = useState([]);
-
-  const handleAddTodo = (text) => {
-    const todoItem = {
-      id:
-        todoList.length > 0
-          ? Math.max(...todoList.map((todo) => todo.id)) + 1
-          : 1,
-      text: text,
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i < 2500; i++) {
+    array.push({
+      id: i,
+      text: `할 일${i}`,
       checked: false,
-    };
+    });
+  }
+  return array;
+}
 
-    setTodoList((prev) => [...prev, todoItem]);
-  };
+const App = () => {
+  const [todoList, setTodoList] = useState(createBulkTodos());
 
-  const handleDeleteTodo = (id) => {
+  const filteredTodoList = useMemo(() => todoList, [todoList]);
+
+  const handleAddTodo = useCallback((text) => {
+    setTodoList((prev) => [
+      ...prev,
+      {
+        id: prev.length > 0 ? Math.max(...prev.map((todo) => todo.id)) + 1 : 1,
+        text: text,
+        checked: false,
+      },
+    ]);
+  }, []);
+
+  const handleDeleteTodo = useCallback((id) => {
     setTodoList((prev) => prev.filter((todo) => todo.id !== id));
-  };
+  }, []);
 
-  const toggleTodoChecked = (id) => {
+  const toggleTodoChecked = useCallback((id) => {
     setTodoList((prev) =>
       prev.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
       )
     );
-  };
+  }, []);
 
   return (
     <MainLayout>
@@ -48,7 +60,7 @@ const App = () => {
         <Header />
         <TodoInsert onAddTodo={handleAddTodo} />
         <TodoList
-          todoList={todoList}
+          todoList={filteredTodoList}
           onCheckTodo={toggleTodoChecked}
           onDeleteTodo={handleDeleteTodo}
         />
