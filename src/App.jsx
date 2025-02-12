@@ -27,7 +27,7 @@ function createBulkTodos() {
 }
 
 const App = () => {
-  const [todoList, setTodoList] = useState(createBulkTodos());
+  const [todoList, setTodoList] = useState(() => createBulkTodos());
 
   const filteredTodoList = useMemo(() => todoList, [todoList]);
 
