@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import GlobalStyle from "./style/GlobalStyle.js";
+import TodoTemplate from "./components/TodoTemplate.jsx";
+import TodoInsert from "./components/TodoInsert.jsx";
+import TodoList from "./components/TodoList.jsx";
+import { useRef, useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [todos, setTodos] = useState([]);
+    const todoId = useRef(1);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const onInsert = (task) => {
+        const todo = {
+            id: todoId.current,
+            task: task,
+            checked:false,
+        }
+        todoId.current += 1;
+        setTodos((prev) => [...prev, todo]);
+    };
+
+    const onRemove = (id) => {
+        setTodos(todos.filter(todo => todo.id !== id));
+    };
+
+    const onCheck = (id) => {
+        setTodos((prev) =>
+            prev.map(todo =>
+                todo.id === id ? { ...todo, checked: !todo.checked } : todo
+            )
+        );
+    };
+
+    return (
+        <>
+            <GlobalStyle />
+            <TodoTemplate>
+                <TodoInsert onInsert={onInsert}/>
+                <TodoList todos={todos} onRemove={onRemove} onCheck={onCheck}/>
+            </TodoTemplate>
+        </>
+    )
 }
 
 export default App
