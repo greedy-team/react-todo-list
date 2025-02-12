@@ -4,8 +4,21 @@ import TodoInsert from "./components/TodoInsert.jsx";
 import TodoList from "./components/TodoList.jsx";
 import { useRef, useState } from "react";
 
+function createBulkTodos(){
+    const array = [];
+    for(let i=1;i<2500;i++){
+        array.push({
+            id : i,
+            task : `할 일${i}`,
+            checked:false,
+        });
+    }
+    return array;
+}
+
+
 function App() {
-    const [todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState(createBulkTodos);
     const todoId = useRef(1);
 
     const onInsert = (task) => {
