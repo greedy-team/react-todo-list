@@ -15,4 +15,4 @@ const TodoListItem = ({ id, text, checked, onDeleteTodo, onCheckTodo }) => {
   );
 };
 
-export default TodoListItem;
+export default memo(TodoListItem);
