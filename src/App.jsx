@@ -1,35 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useMemo, useCallback } from 'react';
+import TodoTemplate from './app/todo/TodoTemplate';
+import styled from 'styled-components';
+import Header from './components/Header/Header';
+import TodoInsert from './components/Content/TodoInsert/TodoInsert';
+import TodoList from './components/Content/TodoList/TodoList';
 
-function App() {
-  const [count, setCount] = useState(0)
+export const MainLayout = styled.main`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #bdbfc1;
+`;
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i < 2500; i++) {
+    array.push({
+      id: i,
+      text: `할 일${i}`,
+      checked: false,
+    });
+  }
+  return array;
 }
 
-export default App
+const App = () => {
+  const [todoList, setTodoList] = useState(() => createBulkTodos());
+
+  const filteredTodoList = useMemo(() => todoList, [todoList]);
+
+  const handleAddTodo = useCallback((text) => {
+    setTodoList((prev) => [
+      ...prev,
+      {
+        id: prev.length > 0 ? Math.max(...prev.map((todo) => todo.id)) + 1 : 1,
+        text: text,
+        checked: false,
+      },
+    ]);
+  }, []);
+
+  const handleDeleteTodo = useCallback((id) => {
+    setTodoList((prev) => prev.filter((todo) => todo.id !== id));
+  }, []);
+
+  const toggleTodoChecked = useCallback((id) => {
+    setTodoList((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, checked: !todo.checked } : todo
+      )
+    );
+  }, []);
+
+  return (
+    <MainLayout>
+      <TodoTemplate>
+        <Header />
+        <TodoInsert onAddTodo={handleAddTodo} />
+        <TodoList
+          todoList={filteredTodoList}
+          onCheckTodo={toggleTodoChecked}
+          onDeleteTodo={handleDeleteTodo}
+        />
+      </TodoTemplate>
+    </MainLayout>
+  );
+};
+
+export default App;
