@@ -1,8 +1,8 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { MdAdd } from "react-icons/md";
 
-const InsertContainer = styled.form`
+const InsertForm = styled.form`
   display: flex;
   background-color: #495057;
 `;
@@ -53,7 +53,7 @@ const TodoInsert = ({ onInsert }) => {
   };
 
   return (
-    <InsertContainer onSubmit={onSubmit}>
+    <InsertForm onSubmit={onSubmit}>
       <InsertInput
         placeholder="할 일을 입력하세요"
         value={value}
@@ -62,7 +62,7 @@ const TodoInsert = ({ onInsert }) => {
       <InsertButton type="submit">
         <MdAdd />
       </InsertButton>
-    </InsertContainer>
+    </InsertForm>
   );
 };
 
