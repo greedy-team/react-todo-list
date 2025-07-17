@@ -5,7 +5,6 @@ import { useState } from "react";
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const id = crypto.randomUUID();
 
   const onInsert = (text) => {
     if (text === "") {
@@ -14,7 +13,7 @@ function App() {
     }
 
     const todo = {
-      id: id,
+      id: crypto.randomUUID(),
       text,
       checked: false,
     };
