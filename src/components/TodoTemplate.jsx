@@ -1,1 +1,28 @@
-// 화면을 가운데에 정렬시켜주며, 앱 타이틀(일정관리)를 보여줌. children으로 내부 JSX를 Props로 받아와 렌더링합니다.
+import {
+  AppContainer,
+  GreedyIcon,
+  HeaderContainer,
+  TextTitle,
+  TodoAppWrapper,
+} from "./TodoTemplate.styled";
+
+function TodoTemplate({ children }) {
+  return (
+    <AppContainer>
+      <TodoAppWrapper>
+        <HeaderContainer>
+          <TextTitle>
+            <GreedyIcon
+              src={"src/assets/greedySquareImage.jpg"}
+              alt="Greedy Icon"
+            />
+            일정관리
+          </TextTitle>
+        </HeaderContainer>
+        {children}
+      </TodoAppWrapper>
+    </AppContainer>
+  );
+}
+
+export default TodoTemplate;
