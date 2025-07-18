@@ -8,30 +8,13 @@ interface Todo {
 
 interface TodoStore {
   todos: Todo[];
-  addTodo: (text: string) => void;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  setTodos: (newTodos: Todo[]) => void;
 }
 
 const useTodosStore = create<TodoStore>((set) => ({
   todos: [],
 
-  addTodo: (text) =>
-    set((state) => ({
-      todos: [...state.todos, { id: Date.now(), text, checked: false }],
-    })),
-
-  toggleTodo: (id) =>
-    set((state) => ({
-      todos: state.todos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo
-      ),
-    })),
-
-  deleteTodo: (id) =>
-    set((state) => ({
-      todos: state.todos.filter((todo) => todo.id !== id),
-    })),
+  setTodos: (newTodos: Todo[]) => set({ todos: newTodos }),
 }));
 
 export default useTodosStore;
