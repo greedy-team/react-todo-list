@@ -28,6 +28,9 @@ export const Text = styled.div`
   flex: 1;
   font-size: 1.125rem;
   color: #495057;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   ${props =>
         props.checked &&
         `
