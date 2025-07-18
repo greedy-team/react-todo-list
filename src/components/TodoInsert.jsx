@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { InsertButton, InsertForm, StyledInput } from "./TodoInsert.styled";
-import useTodosStore from "../stores/todoStore";
 import { MdAdd } from "react-icons/md";
 
-function TodoInsert() {
+function TodoInsert({ onAddTodo }) {
   const [value, setValue] = useState("");
-  const addTodo = useTodosStore((state) => state.addTodo);
 
   const handleInputChange = (e) => {
     setValue(e.target.value);
@@ -18,7 +16,7 @@ function TodoInsert() {
       return alert("할 일을 입력해주세요!");
     }
 
-    addTodo(value);
+    onAddTodo(value);
     setValue("");
   };
 

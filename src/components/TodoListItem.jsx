@@ -1,4 +1,3 @@
-import useTodosStore from "../stores/todoStore";
 import {
   CheckBox,
   TodoListItemBlock,
@@ -11,21 +10,18 @@ import {
   MdRemoveCircleOutline,
 } from "react-icons/md";
 
-function TodoListItem({ todo }) {
-  const toggleTodo = useTodosStore((state) => state.toggleTodo);
-  const deleteTodo = useTodosStore((state) => state.deleteTodo);
-
-  const handleToggleTodo = () => {
-    toggleTodo(todo.id);
+function TodoListItem({ todo, onCheckedTodo, onDeleteTodo }) {
+  const handleCheckedTodo = () => {
+    onCheckedTodo(todo.id);
   };
 
   const handleDeleteTodo = () => {
-    deleteTodo(todo.id);
+    onDeleteTodo(todo.id);
   };
 
   return (
     <TodoListItemBlock>
-      <CheckBox checked={todo.checked} onClick={handleToggleTodo}>
+      <CheckBox checked={todo.checked} onClick={handleCheckedTodo}>
         {todo.checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
       </CheckBox>
       <Text checked={todo.checked}>{todo.text}</Text>
