@@ -1,1 +1,17 @@
-// todo배열을 props로 받아 온 후, 여러개의 TodoListItem 컴포넌트로 변환한 후 보여줍니다.
+import { TodoListBlock } from "./TodoList.styled";
+import TodoListItem from "./TodoListItem";
+import useTodoStore from "../stores/todoStore";
+
+function TodoList() {
+  const todos = useTodoStore((state) => state.todos);
+
+  return (
+    <TodoListBlock>
+      {todos.map((todo) => (
+        <TodoListItem key={todo.id} todo={todo} />
+      ))}
+    </TodoListBlock>
+  );
+}
+
+export default TodoList;
