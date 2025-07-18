@@ -1,1 +1,39 @@
-// 각 할 일 항목에 대한 정보를 보여주는 컴포넌트. Todo 객체를 props로 받아와 상태에 따라 다른 스타일의 UI를 보여줍니다.
+import useTodosStore from "../stores/todoStore";
+import {
+  CheckBox,
+  TodoListItemBlock,
+  Remove,
+  Text,
+} from "./TodoListItem.styled";
+import {
+  MdCheckBoxOutlineBlank,
+  MdCheckBox,
+  MdRemoveCircleOutline,
+} from "react-icons/md";
+
+function TodoListItem({ todo }) {
+  const toggleTodo = useTodosStore((state) => state.toggleTodo);
+  const deleteTodo = useTodosStore((state) => state.deleteTodo);
+
+  const handleToggleTodo = () => {
+    toggleTodo(todo.id);
+  };
+
+  const handleDeleteTodo = () => {
+    deleteTodo(todo.id);
+  };
+
+  return (
+    <TodoListItemBlock>
+      <CheckBox checked={todo.checked} onClick={handleToggleTodo}>
+        {todo.checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+      </CheckBox>
+      <Text checked={todo.checked}>{todo.text}</Text>
+      <Remove onClick={handleDeleteTodo}>
+        <MdRemoveCircleOutline />
+      </Remove>
+    </TodoListItemBlock>
+  );
+}
+
+export default TodoListItem;
