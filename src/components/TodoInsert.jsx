@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { MdAdd } from "react-icons/md";
 
-const InsertForm = styled.form`
+const TodoForm = styled.form`
   display: flex;
   background-color: #495057;
 `;
@@ -39,7 +39,7 @@ const InsertButton = styled.button`
   }
 `;
 
-const TodoInsert = ({ onInsert }) => {
+const TodoInsert = ({ addTodoItem }) => {
   const [value, setValue] = useState("");
 
   const onChange = (e) => {
@@ -47,13 +47,13 @@ const TodoInsert = ({ onInsert }) => {
   };
 
   const onSubmit = (e) => {
-    onInsert(value);
+    addTodoItem(value);
     setValue("");
     e.preventDefault();
   };
 
   return (
-    <InsertForm onSubmit={onSubmit}>
+    <TodoForm onSubmit={onSubmit}>
       <InsertInput
         placeholder="할 일을 입력하세요"
         value={value}
@@ -62,7 +62,7 @@ const TodoInsert = ({ onInsert }) => {
       <InsertButton type="submit">
         <MdAdd />
       </InsertButton>
-    </InsertForm>
+    </TodoForm>
   );
 };
 

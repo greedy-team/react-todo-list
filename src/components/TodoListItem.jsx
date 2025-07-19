@@ -42,16 +42,16 @@ const TextBox = styled.div`
     props.checked ? "color: #adb5bd; text-decoration: line-through;" : ""}
 `;
 
-const TodoListItem = ({ todo, onRemove, onToggle }) => {
+const TodoListItem = ({ todo, removeTodoItem, toggleChecked }) => {
   const { id, text, checked } = todo;
 
   return (
     <ItemContainer>
-      <CheckBox onClick={() => onToggle(id)} checked={checked}>
+      <CheckBox onClick={() => toggleChecked(id)} checked={checked}>
         {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
         <TextBox checked={checked}>{text}</TextBox>
       </CheckBox>
-      <RemoveIcon onClick={() => onRemove(id)}>
+      <RemoveIcon onClick={() => removeTodoItem(id)}>
         <MdRemoveCircleOutline />
       </RemoveIcon>
     </ItemContainer>

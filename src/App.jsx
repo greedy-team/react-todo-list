@@ -6,7 +6,7 @@ import { useState } from "react";
 function App() {
   const [todos, setTodos] = useState([]);
 
-  const onInsert = (text) => {
+  const addTodoItem = (text) => {
     if (text === "") {
       alert("할 일을 작성해주셔야 합니다.");
       return;
@@ -20,11 +20,11 @@ function App() {
     setTodos([...todos, todo]);
   };
 
-  const onRemove = (id) => {
+  const removeTodoItem = (id) => {
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
   };
 
-  const onToggle = (id) => {
+  const toggleChecked = (id) => {
     setTodos((todos) =>
       todos.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
@@ -35,8 +35,12 @@ function App() {
   return (
     <>
       <TodoTemplate>
-        <TodoInsert onInsert={onInsert} />
-        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
+        <TodoInsert addTodoItem={addTodoItem} />
+        <TodoList
+          todos={todos}
+          removeTodoItem={removeTodoItem}
+          toggleChecked={toggleChecked}
+        />
       </TodoTemplate>
     </>
   );
