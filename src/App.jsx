@@ -4,8 +4,10 @@ import TodoTemplate from "./components/TodoTemplate";
 import useTodosStore from "./stores/todoStore";
 
 function App() {
-  const todos = useTodosStore((state) => state.todos);
-  const setTodos = useTodosStore((state) => state.setTodos);
+  const [todos, setTodos] = useTodosStore((state) => [
+    state.todos,
+    state.setTodos,
+  ]);
 
   const handleAddTodo = (text) => {
     if (text.trim === "") {
