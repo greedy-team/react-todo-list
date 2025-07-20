@@ -10,7 +10,7 @@ function App() {
   ]);
 
   const handleAddTodo = (text) => {
-    if (text.trim === "") {
+    if (text.trim() === "") {
       return alert("할 일을 입력해주세요!");
     }
     const newTodo = {
