@@ -2,12 +2,12 @@ import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
 import TodoTemplate from "./components/TodoTemplate";
 import useTodosStore from "./stores/todoStore";
+import { useShallow } from "zustand/shallow";
 
 function App() {
-  const [todos, setTodos] = useTodosStore((state) => [
-    state.todos,
-    state.setTodos,
-  ]);
+  const [todos, setTodos] = useTodosStore(
+    useShallow((state) => [state.todos, state.setTodos])
+  );
 
   const handleAddTodo = (text) => {
     if (text.trim() === "") {
@@ -22,15 +22,15 @@ function App() {
   };
 
   const handleCheckedTodo = (id) => {
-    const updatedTodos = todos.map((todo) =>
-      todo.id === id ? { ...todo, checked: !todo.checked } : todo
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, checked: !todo.checked } : todo
+      )
     );
-    setTodos(updatedTodos);
   };
 
   const handleDeleteTodo = (id) => {
-    const updatedTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(updatedTodos);
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
