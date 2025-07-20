@@ -17,8 +17,8 @@ export const CheckBox = styled.div`
   margin-right: 20px;
   cursor: pointer;
   ${props =>
-        props.checked &&
-        `
+    props.checked &&
+    `
     border: 1px solid #20c997;
     color: #20c997;
   `}
@@ -32,11 +32,16 @@ export const Text = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   ${props =>
-        props.checked &&
-        `
+    props.checked &&
+    `
     color: #adb5bd;
     text-decoration: line-through;
   `}
+  &:hover {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
 `;
 
 export const Remove = styled.div`
