@@ -6,15 +6,18 @@ import TodoList from "./components/TodoList";
 function App() {
   const newId = useRef(1);
   const [todoList, setTodoList] = useState([]);
+
   const handleAddNewTodo = (newTodoText) => {
     setTodoList((prev) => [
       { id: newId.current++, text: newTodoText, checked: false },
       ...prev,
     ]);
   };
+
   const handleDeleteTodoById = (selectedId) => {
     setTodoList((prev) => prev.filter((todo) => todo.id !== selectedId));
   };
+
   const handleToggleTodoCheckBox = (targetTodoId) => {
     setTodoList((prev) =>
       prev.map((todo) =>
@@ -22,17 +25,16 @@ function App() {
       )
     );
   };
+
   return (
-    <>
-      <TodoTemplate>
-        <TodoInsert onAddNewTodo={handleAddNewTodo}></TodoInsert>
-        <TodoList
-          todos={todoList}
-          onToggleTodoCheckBox={handleToggleTodoCheckBox}
-          onDeleteTodoById={handleDeleteTodoById}
-        />
-      </TodoTemplate>
-    </>
+    <TodoTemplate>
+      <TodoInsert onAddNewTodo={handleAddNewTodo} />
+      <TodoList
+        todos={todoList}
+        onToggleTodoCheckBox={handleToggleTodoCheckBox}
+        onDeleteTodoById={handleDeleteTodoById}
+      />
+    </TodoTemplate>
   );
 }
 
