@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AppContainer = styled.div`
   display: flex;
@@ -42,5 +42,5 @@ export const GreedyIcon = styled.img`
   width: 50px;
   height: auto;
   margin-right: 15px;
-  vertical-align: middle; 
+  vertical-align: middle;
 `;

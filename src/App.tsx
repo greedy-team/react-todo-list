@@ -9,7 +9,7 @@ function App() {
     useShallow((state) => [state.todos, state.setTodos])
   );
 
-  const handleAddTodo = (text) => {
+  const handleAddTodo = (text: string) => {
     if (text.trim() === "") {
       return alert("할 일을 입력해주세요!");
     }
@@ -21,7 +21,7 @@ function App() {
     setTodos([...todos, newTodo]);
   };
 
-  const handleCheckedTodo = (id) => {
+  const handleCheckedTodo = (id: number) => {
     setTodos(
       todos.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
@@ -29,7 +29,7 @@ function App() {
     );
   };
 
-  const handleDeleteTodo = (id) => {
+  const handleDeleteTodo = (id: number) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 

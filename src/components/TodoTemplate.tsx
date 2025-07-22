@@ -4,9 +4,13 @@ import {
   HeaderContainer,
   TextTitle,
   TodoAppWrapper,
-} from "./TodoTemplate.styled";
+} from "./TodoTemplate.styled.ts";
 
-function TodoTemplate({ children }) {
+interface TodoTemplateProps {
+  children: React.ReactNode;
+}
+
+function TodoTemplate({ children }: TodoTemplateProps) {
   return (
     <AppContainer>
       <TodoAppWrapper>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TodoInsertWrapper = styled.div`
   background-color: #495057;
@@ -26,7 +26,7 @@ export const StyledInput = styled.input`
 `;
 
 export const InsertButton = styled.button`
-  background: #868E96;
+  background: #868e96;
   color: white;
   padding: 10px 20px;
   border: none;

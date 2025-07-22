@@ -1,15 +1,19 @@
 import { useState } from "react";
-import { InsertButton, InsertForm, StyledInput } from "./TodoInsert.styled";
+import { InsertButton, InsertForm, StyledInput } from "./TodoInsert.styled.ts";
 import { MdAdd } from "react-icons/md";
 
-function TodoInsert({ onAddTodo }) {
+interface TodoInsertProps {
+  onAddTodo: (text: string) => void;
+}
+
+function TodoInsert({ onAddTodo }: TodoInsertProps) {
   const [value, setValue] = useState("");
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
-  const handleAddTodo = (e) => {
+  const handleAddTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (value.trim() === "") {
