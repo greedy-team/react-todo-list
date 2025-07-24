@@ -9,12 +9,7 @@ import {
   MdCheckBox,
   MdRemoveCircleOutline,
 } from "react-icons/md";
-
-interface Todo {
-  id: number;
-  text: string;
-  checked: boolean;
-}
+import { Todo } from "../stores/todoStore.ts";
 
 interface TodoListItemProps {
   todo: Todo;

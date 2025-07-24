@@ -1,11 +1,6 @@
 import { TodoListBlock } from "./TodoList.styled.ts";
 import TodoListItem from "./TodoListItem.tsx";
-
-interface Todo {
-  id: number;
-  text: string;
-  checked: boolean;
-}
+import { Todo } from "../stores/todoStore.ts";
 
 interface TodoListProps {
   todos: Todo[];
