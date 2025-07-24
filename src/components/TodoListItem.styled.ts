@@ -1,16 +1,12 @@
 import styled from "styled-components";
 
-interface StyleProps {
-  $checked: boolean;
-}
-
 export const TodoListItemBlock = styled.div`
   padding: 15px 20px;
   display: flex;
   align-items: center;
 `;
 
-export const CheckBox = styled.div<StyleProps>`
+export const CheckBox = styled.div<{ $checked: boolean }>`
   width: 24px;
   height: 24px;
   border: 1px solid #ced4da;
@@ -28,7 +24,7 @@ export const CheckBox = styled.div<StyleProps>`
   `}
 `;
 
-export const Text = styled.div<StyleProps>`
+export const Text = styled.div<{ $checked: boolean }>`
   flex: 1;
   font-size: 1.125rem;
   color: #495057;
