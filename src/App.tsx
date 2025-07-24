@@ -1,7 +1,7 @@
 import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
 import TodoTemplate from "./components/TodoTemplate";
-import useTodosStore from "./stores/todoStore";
+import useTodosStore, { Todo } from "./stores/todoStore";
 import { useShallow } from "zustand/shallow";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
       text: text,
       checked: false,
     };
-    setTodos([...todos, newTodo]);
+    setTodos([...todos, newTodo] as Todo[]);
   };
 
   const handleCheckedTodo = (id: number) => {
