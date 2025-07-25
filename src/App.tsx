@@ -2,7 +2,7 @@ import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
 import TodoTemplate from "./components/TodoTemplate";
 import { Todo } from "./stores/todoStore";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 function createBulkTodos(): Todo[] {
   const array: Todo[] = [];
@@ -19,7 +19,7 @@ function createBulkTodos(): Todo[] {
 function App() {
   const [todos, setTodos] = useState<Todo[]>(createBulkTodos());
 
-  const handleAddTodo = (text: string) => {
+  const handleAddTodo = useCallback((text: string) => {
     if (text.trim() === "") {
       return alert("할 일을 입력해주세요!");
     }
@@ -29,19 +29,19 @@ function App() {
       checked: false,
     };
     setTodos([...todos, newTodo]);
-  };
+  }, []);
 
-  const handleCheckedTodo = (id: number) => {
+  const handleCheckedTodo = useCallback((id: number) => {
     setTodos(
       todos.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
       )
     );
-  };
+  }, []);
 
-  const handleDeleteTodo = (id: number) => {
+  const handleDeleteTodo = useCallback((id: number) => {
     setTodos(todos.filter((todo) => todo.id !== id));
-  };
+  }, []);
 
   return (
     <>
