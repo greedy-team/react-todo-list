@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import styled from "styled-components";
 import { MdAdd } from "react-icons/md";
 
@@ -21,7 +21,15 @@ const InsertInput = styled.input`
   flex: 1;
 `;
 
-const InsertButton = styled.button`
+const InsertButton = memo(() => {
+  return (
+    <StyledInsertButton type="submit">
+      <MdAdd />
+    </StyledInsertButton>
+  );
+});
+
+const StyledInsertButton = styled.button`
   background: none;
   outline: none;
   border: none;
@@ -39,7 +47,7 @@ const InsertButton = styled.button`
   }
 `;
 
-const TodoInsert = ({ addTodoItem }) => {
+const TodoInsert = memo(({ addTodoItem }) => {
   const [value, setValue] = useState("");
 
   const onChange = (e) => {
@@ -59,11 +67,9 @@ const TodoInsert = ({ addTodoItem }) => {
         value={value}
         onChange={onChange}
       />
-      <InsertButton type="submit">
-        <MdAdd />
-      </InsertButton>
+      <InsertButton />
     </TodoForm>
   );
-};
+});
 
 export default TodoInsert;
