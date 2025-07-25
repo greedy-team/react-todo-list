@@ -1,13 +1,23 @@
 import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
 import TodoTemplate from "./components/TodoTemplate";
-import useTodosStore, { Todo } from "./stores/todoStore";
-import { useShallow } from "zustand/shallow";
+import { Todo } from "./stores/todoStore";
+import { useState } from "react";
+
+function createBulkTodos(): Todo[] {
+  const array: Todo[] = [];
+  for (let i = 1; i < 2500; i++) {
+    array.push({
+      id: i,
+      text: `할 일${i}`,
+      checked: false,
+    });
+  }
+  return array;
+}
 
 function App() {
-  const [todos, setTodos] = useTodosStore(
-    useShallow((state) => [state.todos, state.setTodos])
-  );
+  const [todos, setTodos] = useState<Todo[]>(createBulkTodos());
 
   const handleAddTodo = (text: string) => {
     if (text.trim() === "") {
@@ -18,7 +28,7 @@ function App() {
       text: text,
       checked: false,
     };
-    setTodos([...todos, newTodo] as Todo[]);
+    setTodos([...todos, newTodo]);
   };
 
   const handleCheckedTodo = (id: number) => {
