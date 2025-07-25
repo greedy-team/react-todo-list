@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import { useState, useCallback, memo } from "react";
 import styled from "styled-components";
 import { MdAdd } from "react-icons/md";
 
@@ -54,11 +54,16 @@ const TodoInsert = memo(({ addTodoItem }) => {
     setValue(e.target.value);
   };
 
-  const onSubmit = (e) => {
-    addTodoItem(value);
-    setValue("");
-    e.preventDefault();
-  };
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (value.trim()) {
+        addTodoItem(value.trim());
+        setValue("");
+      }
+    },
+    [addTodoItem, value]
+  );
 
   return (
     <TodoForm onSubmit={onSubmit}>
