@@ -9,7 +9,11 @@ const TodoListContainer = styled.div`
   overflow-y: auto;
 `;
 
-const TodoList = memo(function TodoList(todos, removeTodoItem, toggleChecked) {
+const TodoList = memo(function TodoList({
+  todos,
+  removeTodoItem,
+  toggleChecked,
+}) {
   const rowRenderer = useCallback(
     ({ index, key, style }) => {
       const todo = todos[index];
@@ -30,11 +34,10 @@ const TodoList = memo(function TodoList(todos, removeTodoItem, toggleChecked) {
     <TodoListContainer>
       <List
         width={512}
-        height={320}
+        height={348}
         rowCount={todos.length}
         rowHeight={55}
         rowRenderer={rowRenderer}
-        list={todos}
         style={{ outline: "none" }}
       />
     </TodoListContainer>

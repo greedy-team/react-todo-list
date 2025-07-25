@@ -47,7 +47,7 @@ const StyledInsertButton = styled.button`
   }
 `;
 
-const TodoInsert = memo(function TodoInsert(addTodoItem) {
+const TodoInsert = memo(function TodoInsert({ addTodoItem }) {
   const [value, setValue] = useState("");
 
   const onChange = (e) => {

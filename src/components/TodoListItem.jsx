@@ -43,12 +43,9 @@ const TextBox = styled.div`
     props.checked ? "color: #adb5bd; text-decoration: line-through;" : ""}
 `;
 
-const TodoListItem = memo(function TodoListItem(
-  todo,
-  removeTodoItem,
-  toggleChecked
-) {
-  const { id, text, checked } = todo;
+const TodoListItem = memo(
+  function TodoListItem({ todo, removeTodoItem, toggleChecked }) {
+    const { id, text, checked } = todo;
 
   return (
     <ItemContainer>
