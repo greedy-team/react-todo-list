@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import {
   MdCheckBoxOutlineBlank,
@@ -42,7 +43,7 @@ const TextBox = styled.div`
     props.checked ? "color: #adb5bd; text-decoration: line-through;" : ""}
 `;
 
-const TodoListItem = ({ todo, removeTodoItem, toggleChecked }) => {
+const TodoListItem = memo(({ todo, removeTodoItem, toggleChecked }) => {
   const { id, text, checked } = todo;
 
   return (
@@ -56,6 +57,6 @@ const TodoListItem = ({ todo, removeTodoItem, toggleChecked }) => {
       </RemoveIcon>
     </ItemContainer>
   );
-};
+});
 
 export default TodoListItem;
