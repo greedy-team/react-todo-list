@@ -10,6 +10,7 @@ import {
   MdRemoveCircleOutline,
 } from "react-icons/md";
 import { Todo } from "../stores/todoStore.ts";
+import React from "react";
 
 interface TodoListItemProps {
   todo: Todo;
@@ -43,4 +44,4 @@ function TodoListItem({
   );
 }
 
-export default TodoListItem;
+export default React.memo(TodoListItem);
