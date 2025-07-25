@@ -21,7 +21,7 @@ const InsertInput = styled.input`
   flex: 1;
 `;
 
-const InsertButton = memo(() => {
+const InsertButton = memo(function InsetButton() {
   return (
     <StyledInsertButton type="submit">
       <MdAdd />
@@ -47,7 +47,7 @@ const StyledInsertButton = styled.button`
   }
 `;
 
-const TodoInsert = memo(({ addTodoItem }) => {
+const TodoInsert = memo(function TodoInsert(addTodoItem) {
   const [value, setValue] = useState("");
 
   const onChange = (e) => {

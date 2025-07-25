@@ -9,7 +9,7 @@ const TodoListContainer = styled.div`
   overflow-y: auto;
 `;
 
-const TodoList = memo(({ todos, removeTodoItem, toggleChecked }) => {
+const TodoList = memo(function TodoList(todos, removeTodoItem, toggleChecked) {
   const rowRenderer = useCallback(
     ({ index, key, style }) => {
       const todo = todos[index];
