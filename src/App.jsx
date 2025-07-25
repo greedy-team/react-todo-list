@@ -16,7 +16,7 @@ function createBulkTodos() {
 }
 
 function App() {
-  const [todos, setTodos] = useState(createBulkTodos());
+  const [todos, setTodos] = useState(() => createBulkTodos());
 
   const addTodoItem = useCallback((text) => {
     if (text === "") {
