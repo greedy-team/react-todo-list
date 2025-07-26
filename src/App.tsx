@@ -28,19 +28,19 @@ function App() {
       text: text,
       checked: false,
     };
-    setTodos([...todos, newTodo]);
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
   }, []);
 
   const handleCheckedTodo = useCallback((id: number) => {
-    setTodos(
-      todos.map((todo) =>
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
       )
     );
   }, []);
 
   const handleDeleteTodo = useCallback((id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   }, []);
 
   return (
