@@ -2,6 +2,8 @@ import { TodoListBlock } from "./TodoList.styled.ts";
 import TodoListItem from "./TodoListItem.tsx";
 import { Todo } from "../stores/todoStore.ts";
 import { List } from "react-virtualized";
+import React from "react";
+import { useCallback } from "react";
 
 interface TodoListProps {
   todos: Todo[];
@@ -14,19 +16,22 @@ const TodoList: React.FC<TodoListProps> = ({
   onCheckedTodo,
   onDeleteTodo,
 }) => {
-  const rowRenderer = ({ index, key, style }) => {
-    const todo = todos[index];
+  const rowRenderer = useCallback(
+    ({ index, key, style }) => {
+      const todo = todos[index];
 
-    return (
-      <div key={key} style={style}>
-        <TodoListItem
-          todo={todo}
-          onCheckedTodo={onCheckedTodo}
-          onDeleteTodo={onDeleteTodo}
-        />
-      </div>
-    );
-  };
+      return (
+        <div key={key} style={style}>
+          <TodoListItem
+            todo={todo}
+            onCheckedTodo={onCheckedTodo}
+            onDeleteTodo={onDeleteTodo}
+          />
+        </div>
+      );
+    },
+    [todos, onCheckedTodo, onDeleteTodo]
+  );
 
   return (
     <TodoListBlock>
@@ -42,4 +47,4 @@ const TodoList: React.FC<TodoListProps> = ({
   );
 };
 
-export default TodoList;
+export default React.memo(TodoList);
