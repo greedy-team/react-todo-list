@@ -21,15 +21,7 @@ const InsertInput = styled.input`
   flex: 1;
 `;
 
-const InsertButton = memo(() => {
-  return (
-    <StyledInsertButton type="submit">
-      <MdAdd />
-    </StyledInsertButton>
-  );
-});
-
-const StyledInsertButton = styled.button`
+const InsertButton = styled.button`
   background: none;
   outline: none;
   border: none;
@@ -65,7 +57,9 @@ const TodoInsert = memo(function TodoInsert({ addTodoItem }) {
   return (
     <TodoForm onSubmit={submitForm}>
       <InsertInput placeholder="할 일을 입력하세요" ref={inputValue} />
-      <InsertButton />
+      <InsertButton type="submit">
+        <MdAdd />
+      </InsertButton>
     </TodoForm>
   );
 });
