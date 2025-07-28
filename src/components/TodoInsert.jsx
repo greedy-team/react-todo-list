@@ -21,7 +21,7 @@ const InsertInput = styled.input`
   flex: 1;
 `;
 
-const InsertButton = memo(function InsetButton() {
+const InsertButton = memo(() => {
   return (
     <StyledInsertButton type="submit">
       <MdAdd />
