@@ -12,7 +12,6 @@ const TodoItemContainer = styled.div`
   padding: 0.75rem 1rem;
   background: #f1f3f5;
   border-radius: 8px;
-  box-sizing: border-box;
 
   &:hover {
     background: #e9ecef;

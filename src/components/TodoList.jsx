@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const TodoListContainer = styled.div`
   padding: 12px 16px;
-  box-sizing: border-box;
 `;
 
 const TodoList = ({ todos, onToggleTodoCheckBox, onDeleteTodoById }) => {
