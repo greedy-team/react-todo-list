@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import {
   MdCheckBox,
@@ -5,13 +6,12 @@ import {
   MdRemoveCircleOutline,
 } from "react-icons/md";
 
-const TodoItemContainer = styled.li`
+const TodoItemContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
   background: #f1f3f5;
   border-radius: 8px;
-  margin-bottom: 0.75rem;
 
   &:hover {
     background: #e9ecef;
@@ -54,7 +54,7 @@ const TodoItemDeleteButton = styled.button`
 
 const TodoListItem = ({ todo, onToggleTodoCheckBox, onDeleteTodoById }) => {
   return (
-    <TodoItemContainer>
+    <TodoItemContainer role="listitem">
       <TodoItemCheckbox
         onClick={() => onToggleTodoCheckBox(todo.id)}
         aria-label={todo.checked ? "할 일 체크 해제" : "할 일 체크"}
@@ -74,4 +74,4 @@ const TodoListItem = ({ todo, onToggleTodoCheckBox, onDeleteTodoById }) => {
   );
 };
 
-export default TodoListItem;
+export default memo(TodoListItem);
