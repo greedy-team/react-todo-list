@@ -10,7 +10,7 @@ const TodoTemplateBlock = styled.main`
   margin: 8rem auto;
   min-height: var(--template-min-height);
   max-height: var(--template-max-height);
-  overflow: scroll;
+  overflow: hidden;
 `;
 
 const TodoTitle = styled.h1`

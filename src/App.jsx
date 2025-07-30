@@ -4,11 +4,23 @@ import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
 import { useState, useRef, useCallback } from "react";
 
-function App() {
-  const [todos, setTodos] = useState([]);
-  const nextId = useRef(1);
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i < 2500; i++) {
+    array.push({
+      id: i,
+      text: `할 일${i}`,
+      checked: false,
+    });
+  }
+  return array;
+}
 
-  const onInsert = useCallback((text) => {
+function App() {
+  const [todos, setTodos] = useState(createBulkTodos);
+  const nextId = useRef(2500);
+
+  const handleInsertTodo = useCallback((text) => {
     const todo = {
       id: nextId.current,
       text,
@@ -18,7 +30,7 @@ function App() {
     nextId.current += 1;
   }, []);
 
-  const onToggle = useCallback((id) => {
+  const handleToggleState = useCallback((id) => {
     setTodos((todos) =>
       todos.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
@@ -26,14 +38,18 @@ function App() {
     );
   }, []);
 
-  const onRemove = useCallback((id) => {
+  const handleRemoveTodo = useCallback((id) => {
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
   }, []);
 
   return (
     <TodoTemplate>
-      <TodoInsert onInsert={onInsert} />
-      <TodoList todos={todos} onToggle={onToggle} onRemove={onRemove} />
+      <TodoInsert onInsert={handleInsertTodo} />
+      <TodoList
+        todos={todos}
+        onToggle={handleToggleState}
+        onRemove={handleRemoveTodo}
+      />
     </TodoTemplate>
   );
 }

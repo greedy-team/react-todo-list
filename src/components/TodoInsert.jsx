@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { MdAdd } from "react-icons/md";
-import { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -52,7 +52,7 @@ const TodoAddButton = styled.button`
 
 const TodoInsert = ({ onInsert }) => {
   const [text, setText] = useState("");
-  const handleText = (e) => {
+  const handleSubmitTodo = (e) => {
     e.preventDefault();
     if (!text.trim()) return;
 
@@ -68,7 +68,7 @@ const TodoInsert = ({ onInsert }) => {
   };
 
   return (
-    <form onSubmit={handleText}>
+    <form onSubmit={handleSubmitTodo}>
       <TodoInsertBlock>
         <TodoInput
           placeholder="할 일을 입력하세요"
@@ -84,4 +84,4 @@ const TodoInsert = ({ onInsert }) => {
   );
 };
 
-export default TodoInsert;
+export default React.memo(TodoInsert);
