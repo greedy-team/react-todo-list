@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useCallback, memo } from "react";
 import styled from "styled-components";
 import { MdAdd } from "react-icons/md";
 
@@ -39,31 +39,29 @@ const InsertButton = styled.button`
   }
 `;
 
-const TodoInsert = ({ addTodoItem }) => {
-  const [value, setValue] = useState("");
+const TodoInsert = memo(function TodoInsert({ addTodoItem }) {
+  const inputValue = useRef();
 
-  const onChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  const onSubmit = (e) => {
-    addTodoItem(value);
-    setValue("");
-    e.preventDefault();
-  };
+  const submitForm = useCallback(
+    (e) => {
+      e.preventDefault();
+      const text = inputValue.current.value.trim();
+      if (text) {
+        addTodoItem(text);
+        inputValue.current.value = "";
+      }
+    },
+    [addTodoItem]
+  );
 
   return (
-    <TodoForm onSubmit={onSubmit}>
-      <InsertInput
-        placeholder="할 일을 입력하세요"
-        value={value}
-        onChange={onChange}
-      />
+    <TodoForm onSubmit={submitForm}>
+      <InsertInput placeholder="할 일을 입력하세요" ref={inputValue} />
       <InsertButton type="submit">
         <MdAdd />
       </InsertButton>
     </TodoForm>
   );
-};
+});
 
 export default TodoInsert;

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styled from "styled-components";
 import {
   MdCheckBoxOutlineBlank,
@@ -42,20 +43,31 @@ const TextBox = styled.div`
     props.checked ? "color: #adb5bd; text-decoration: line-through;" : ""}
 `;
 
-const TodoListItem = ({ todo, removeTodoItem, toggleChecked }) => {
-  const { id, text, checked } = todo;
+const TodoListItem = memo(
+  function TodoListItem({ todo, removeTodoItem, toggleChecked }) {
+    const { id, text, checked } = todo;
 
-  return (
-    <ItemContainer>
-      <CheckBox onClick={() => toggleChecked(id)} checked={checked}>
-        {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
-        <TextBox checked={checked}>{text}</TextBox>
-      </CheckBox>
-      <RemoveIcon onClick={() => removeTodoItem(id)}>
-        <MdRemoveCircleOutline />
-      </RemoveIcon>
-    </ItemContainer>
-  );
-};
+    return (
+      <ItemContainer>
+        <CheckBox onClick={() => toggleChecked(id)} checked={checked}>
+          {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+          <TextBox checked={checked}>{text}</TextBox>
+        </CheckBox>
+        <RemoveIcon onClick={() => removeTodoItem(id)}>
+          <MdRemoveCircleOutline />
+        </RemoveIcon>
+      </ItemContainer>
+    );
+  },
+  (prevProps, nextProps) => {
+    return (
+      prevProps.todo.id === nextProps.todo.id &&
+      prevProps.todo.text === nextProps.todo.text &&
+      prevProps.todo.checked === nextProps.todo.checked &&
+      prevProps.removeTodoItem === nextProps.removeTodoItem &&
+      prevProps.toggleChecked === nextProps.toggleChecked
+    );
+  }
+);
 
 export default TodoListItem;
