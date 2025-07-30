@@ -8,6 +8,7 @@ const MainContainer = styled.main`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 100%;
 `;
 
 interface MainProps extends AddTodo, RemoveTodo, ToggleTodo {

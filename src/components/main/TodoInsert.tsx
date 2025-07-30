@@ -5,6 +5,8 @@ import { useState } from "react";
 import { AddTodo } from "../../types/todo";
 import { v4 as uuidv4 } from "uuid";
 import TEXTS from "../../constants/texts";
+import NUMBERS from "../../constants/numbers";
+import React from "react";
 
 const TodoInsertContainer = styled.section`
   display: flex;
@@ -45,8 +47,8 @@ const TodoInsert = ({ addTodo }: AddTodo) => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (value.trim() === "") return;
-    if (value.length > 100) {
-      setValue(value.slice(0, 100));
+    if (value.length > NUMBERS.todoInputMaxLength) {
+      setValue(value.slice(0, NUMBERS.todoInputMaxLength));
       return;
     }
     addTodo({
@@ -65,6 +67,7 @@ const TodoInsert = ({ addTodo }: AddTodo) => {
           placeholder={TEXTS.todo.insertPlaceholder}
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          maxLength={NUMBERS.todoInputMaxLength}
         />
         <TodoInsertButton type="submit">
           <MdAdd />

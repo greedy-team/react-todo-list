@@ -1,12 +1,12 @@
 import { TodoItem } from "../types/todo";
 
-export const isTodoItem = (item: any): item is TodoItem => {
+export const isTodoItem = (item: unknown): item is TodoItem => {
+  if (typeof item !== "object" || item === null) return false;
+  const todo = item as TodoItem;
   return (
-    typeof item === "object" &&
-    item !== null &&
-    typeof item.id === "string" &&
-    typeof item.text === "string" &&
-    typeof item.checked === "boolean"
+    typeof todo.id === "string" &&
+    typeof todo.text === "string" &&
+    typeof todo.checked === "boolean"
   );
 };
 

@@ -3,6 +3,8 @@ import TodoListItem from "./TodoListItem";
 import { RemoveTodo, ToggleTodo, TodoItem } from "../../types/todo";
 import TEXTS from "../../constants/texts";
 import COLORS from "../../constants/color";
+import { useCallback } from "react";
+import { List, ListRowProps, AutoSizer } from "react-virtualized";
 
 const TodoListContainer = styled.section`
   display: flex;
@@ -30,17 +32,37 @@ interface TodoListProps extends RemoveTodo, ToggleTodo {
 }
 
 const TodoList = ({ todos, removeTodo, toggleTodo }: TodoListProps) => {
+  const rowRenderer = useCallback(
+    ({ index, key, style }: ListRowProps) => {
+      const todo = todos[index];
+      return (
+        <div key={key} style={style}>
+          <TodoListItem
+            todo={todo}
+            removeTodo={removeTodo}
+            toggleTodo={toggleTodo}
+          />
+        </div>
+      );
+    },
+    [todos, removeTodo, toggleTodo]
+  );
   return (
     <TodoListContainer>
       <TodoListTitle>{TEXTS.todo.listTitle}</TodoListTitle>
-      {todos.map((todo) => (
-        <TodoListItem
-          key={todo.id}
-          todo={todo}
-          removeTodo={removeTodo}
-          toggleTodo={toggleTodo}
-        />
-      ))}
+      <div style={{ flex: 1, width: "100%" }}>
+        <AutoSizer>
+          {({ width }) => (
+            <List
+              width={width}
+              height={window.innerHeight - 100}
+              rowCount={todos.length}
+              rowHeight={50}
+              rowRenderer={rowRenderer}
+            />
+          )}
+        </AutoSizer>
+      </div>
     </TodoListContainer>
   );
 };

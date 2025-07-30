@@ -6,6 +6,7 @@ import {
   MdRemoveCircleOutline,
 } from "react-icons/md";
 import { RemoveTodo, TodoItem, ToggleTodo } from "../../types/todo";
+import { memo } from "react";
 
 const TodoListItemContainer = styled.li<{ $checked: boolean }>`
   display: flex;
@@ -77,4 +78,4 @@ const TodoListItem = ({ todo, removeTodo, toggleTodo }: TodoListItemProps) => {
   );
 };
 
-export default TodoListItem;
+export default memo(TodoListItem);

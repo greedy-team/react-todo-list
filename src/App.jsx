@@ -1,10 +1,22 @@
 import TodoTemplate from "./templates/TodoTemplate";
 import "./index.css";
 import { useState, useEffect } from "react";
-import { loadTodos, saveTodos } from "./utils/utils";
+import { saveTodos } from "./utils/utils";
 
 function App() {
-  const [todos, setTodos] = useState(loadTodos);
+  const [todos, setTodos] = useState(() => createBulkTodos());
+
+  function createBulkTodos() {
+    const array = [];
+    for (let i = 1; i < 2500; i++) {
+      array.push({
+        id: i,
+        text: `할 일${i}`,
+        checked: false,
+      });
+    }
+    return array;
+  }
 
   useEffect(() => {
     saveTodos(todos);
