@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface Todo {
+export interface Todo {
   id: number;
   text: string;
   checked: boolean;

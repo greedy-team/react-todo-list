@@ -1,11 +1,9 @@
 import { TodoListBlock } from "./TodoList.styled.ts";
 import TodoListItem from "./TodoListItem.tsx";
-
-interface Todo {
-  id: number;
-  text: string;
-  checked: boolean;
-}
+import { Todo } from "../stores/todoStore.ts";
+import { List } from "react-virtualized";
+import React from "react";
+import { useCallback } from "react";
 
 interface TodoListProps {
   todos: Todo[];
@@ -13,19 +11,40 @@ interface TodoListProps {
   onDeleteTodo: (id: number) => void;
 }
 
-function TodoList({ todos, onCheckedTodo, onDeleteTodo }: TodoListProps) {
+const TodoList: React.FC<TodoListProps> = ({
+  todos,
+  onCheckedTodo,
+  onDeleteTodo,
+}) => {
+  const rowRenderer = useCallback(
+    ({ index, key, style }) => {
+      const todo = todos[index];
+
+      return (
+        <div key={key} style={style}>
+          <TodoListItem
+            todo={todo}
+            onCheckedTodo={onCheckedTodo}
+            onDeleteTodo={onDeleteTodo}
+          />
+        </div>
+      );
+    },
+    [todos, onCheckedTodo, onDeleteTodo]
+  );
+
   return (
     <TodoListBlock>
-      {todos.map((todo) => (
-        <TodoListItem
-          key={todo.id}
-          todo={todo}
-          onCheckedTodo={onCheckedTodo}
-          onDeleteTodo={onDeleteTodo}
-        />
-      ))}
+      <List
+        width={400}
+        height={600}
+        rowCount={todos.length}
+        rowHeight={50}
+        rowRenderer={rowRenderer}
+        overscanRowCount={10}
+      />
     </TodoListBlock>
   );
-}
+};
 
-export default TodoList;
+export default React.memo(TodoList);

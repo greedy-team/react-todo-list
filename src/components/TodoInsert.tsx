@@ -7,7 +7,7 @@ interface TodoInsertProps {
 }
 
 function TodoInsert({ onAddTodo }: TodoInsertProps) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<string>("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

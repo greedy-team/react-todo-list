@@ -1,15 +1,25 @@
 import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
 import TodoTemplate from "./components/TodoTemplate";
-import useTodosStore from "./stores/todoStore";
-import { useShallow } from "zustand/shallow";
+import { Todo } from "./stores/todoStore";
+import { useCallback, useState } from "react";
+
+function createBulkTodos(): Todo[] {
+  const array: Todo[] = [];
+  for (let i = 1; i < 2500; i++) {
+    array.push({
+      id: i,
+      text: `할 일${i}`,
+      checked: false,
+    });
+  }
+  return array;
+}
 
 function App() {
-  const [todos, setTodos] = useTodosStore(
-    useShallow((state) => [state.todos, state.setTodos])
-  );
+  const [todos, setTodos] = useState<Todo[]>(createBulkTodos());
 
-  const handleAddTodo = (text: string) => {
+  const handleAddTodo = useCallback((text: string) => {
     if (text.trim() === "") {
       return alert("할 일을 입력해주세요!");
     }
@@ -18,20 +28,20 @@ function App() {
       text: text,
       checked: false,
     };
-    setTodos([...todos, newTodo]);
-  };
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
+  }, []);
 
-  const handleCheckedTodo = (id: number) => {
-    setTodos(
-      todos.map((todo) =>
+  const handleCheckedTodo = useCallback((id: number) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
       )
     );
-  };
+  }, []);
 
-  const handleDeleteTodo = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+  const handleDeleteTodo = useCallback((id: number) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  }, []);
 
   return (
     <>
