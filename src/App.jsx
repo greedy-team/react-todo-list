@@ -2,9 +2,13 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import TodoTemplate from './components/TodoTemplate'
 import TodoInsert from './components/TodoInsert';
+import TodoList from './components/TodoList';
 
 function App() {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState([
+    { id: 1, text: '123', checked: true },
+    { id: 2, text: '4233', checked: false },
+  ]);
 
   const addNewTodo = ( newTodoText ) => {
     const newTodo = {
@@ -16,7 +20,7 @@ function App() {
     setTodoList(newTodoList);
   };
 
-  const removeTodoById = ( id ) => {
+  const deleteTodoById = ( id ) => {
     const removedTodoList = todoList.filter( (todo) => (todo.id !== id));
     setTodoList(removedTodoList);
   };
@@ -35,6 +39,7 @@ function App() {
     <MainContainer>
       <TodoTemplate>
         <TodoInsert></TodoInsert>
+        <TodoList todoList={todoList}></TodoList>
       </TodoTemplate>
     </MainContainer>
   )
