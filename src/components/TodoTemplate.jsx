@@ -25,8 +25,8 @@ const Title = styled.h1`
   font-size: 27px;
   font-weight: normal;
   width: 500px;
-  height: 80px;
-  margin: auto;
+  height: 70px;
+  margin: 0px;
 
   display: flex;
   align-items: center;

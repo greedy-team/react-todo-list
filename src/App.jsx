@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import TodoTemplate from './components/TodoTemplate'
+import TodoInsert from './components/TodoInsert';
 
 function App() {
   return (
     <MainContainer>
       <TodoTemplate>
-        aa
+        <TodoInsert></TodoInsert>
       </TodoTemplate>
     </MainContainer>
   )
