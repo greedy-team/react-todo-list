@@ -22,7 +22,7 @@ export default function TodoInsert({ addNewTodo }) {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <Button aria-label="할 일 추가">
+      <Button aria-label={inputValue === '' ? '할 일 추가' : `${inputValue} 추가`}>
         <PlusIcon />
       </Button>
     </Container>

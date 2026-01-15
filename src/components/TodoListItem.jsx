@@ -10,14 +10,20 @@ export default function TodoListItem({ todo, deleteTodoById, toggleTodoCheckedBy
   };
   return (
     <Container>
-      <TextCheckBoxButton onClick={handleTextCheckBoxClick}>
+      <TextCheckBoxButton
+        onClick={handleTextCheckBoxClick}
+        aria-label={todo.checked ? `${todo.text} 체크 해제` : `${todo.text} 체크`}
+      >
         {!todo.checked && <BlankBoxIcon />}
         {todo.checked && <CheckedBoxIcon />}
         <Text $checked={todo.checked}>
           {todo.text}
         </Text>
       </TextCheckBoxButton>
-      <DeleteButton onClick={handleDeleteButtonClick}>
+      <DeleteButton
+        onClick={handleDeleteButtonClick}
+        aria-label={`${todo.text} 삭제`}
+      >
         <DeleteIcon />
       </DeleteButton>
     </Container>
@@ -34,11 +40,11 @@ const TextCheckBoxButton = styled.button`
   border: none;
   border-radius: 0px;
 
-  width: 100%;
   padding: 18px;
   gap: 10px;
   
   display: flex;
+  flex: 1;
   align-items: center;
 
   &:focus, &:active {
@@ -57,9 +63,10 @@ const CheckedBoxIcon = styled(MdCheckBox)`
 
 const Text = styled.span`
   font-size: 18px;
+  text-align: left;
+  word-break: break-all;
 
   flex: 1;
-  word-break: break-all;
 
   ${(props) => (
     props.$checked
@@ -83,6 +90,6 @@ const DeleteIcon = styled(MdRemoveCircleOutline)`
   font-size: 22px;
 
   &:hover {
-    color: #ff5454;
+    color: #ff7474;
   }
 `;
