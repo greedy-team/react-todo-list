@@ -1,49 +1,72 @@
+import { useState } from 'react';
 import styled from 'styled-components';
-import { MdAdd } from "react-icons/md";
+import { MdAdd } from 'react-icons/md';
 
-export default function TodoInsert() {
+export default function TodoInsert({ addNewTodo }) {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputValue === '') {
+      return;
+    }
+    addNewTodo(inputValue);
+    setInputValue('');
+  };
+
   return (
-		<Container>
-			<Input />
-			<Button>
-				<PlusIcon />
-			</Button>
-		</Container>
-	);
+    <Container onSubmit={handleSubmit}>
+      <Input
+        type="text"
+        placeholder="할 일을 입력하세요"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <Button aria-label="할 일 추가">
+        <PlusIcon />
+      </Button>
+    </Container>
+  );
 }
 
 const Container = styled.form`
-	display: flex;
-	height: 45px;
+  display: flex;
+  height: 45px;
+  width: 500px;
 
-`
+`;
 
 const Input = styled.input`
-	border: none;
-	width: 100%;
-	padding-left: 10px;
+  border: none;
+  width: 100%;
+  padding-left: 10px;
 
-	font-size: 30px;
+  font-size: 18px;
 
-	outline: none;
-	background-color: gray;
+  outline: none;
+  color: white;
+  background-color: #373737;
 `;
 
 const Button = styled.button`
-	border: none;
-	border-radius: 0px;
+  border: none;
+  border-radius: 0px;
 
-	outline: none;
-	&:focus, &:active {
+  outline: none;
+  &:focus, &:active {
     outline: none;
   }
 
-	background-color: #5c5c5c;
+  background-color: #5c5c5c;
+
+  &:hover {
+    background-color: #888888;
+  }
 `;
 
 const PlusIcon = styled(MdAdd)`
-	color: white;
-	font-size: 25px;
+  color: white;
+  font-size: 25px;
 
 
 `;

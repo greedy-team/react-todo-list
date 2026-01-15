@@ -5,7 +5,7 @@ export default function TodoTemplate({ children }) {
   return (
     <Wrapper>
       <Title>
-        <img src={greedyIcon} />
+        <img src={greedyIcon} alt="그리디 로고" />
         일정관리
       </Title>
       {children}
@@ -39,4 +39,3 @@ const Title = styled.h1`
     height: 70px;
   }
 `;
-
