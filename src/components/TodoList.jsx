@@ -17,9 +17,10 @@ export default function TodoList({ todoList, deleteTodoById, toggleTodoCheckedBy
 }
 
 const Container = styled.div`
-  width: 500px;
   min-height: 420px;
   max-height: 540px;
+  width: 500px;
+
   overflow-y: auto;
 
   background-color: white;

@@ -30,21 +30,22 @@ export default function TodoInsert({ addNewTodo }) {
 }
 
 const Container = styled.form`
-  display: flex;
   height: 45px;
   width: 500px;
 
+  display: flex;
 `;
 
 const Input = styled.input`
+  color: white;
+  font-size: 18px;
+
   border: none;
+  outline: none;
+  
   width: 100%;
   padding-left: 10px;
 
-  font-size: 18px;
-
-  outline: none;
-  color: white;
   background-color: #373737;
 `;
 

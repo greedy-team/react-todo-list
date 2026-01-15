@@ -24,13 +24,14 @@ const Title = styled.h1`
   color: white;
   font-size: 27px;
   font-weight: normal;
+
   width: 500px;
   height: 70px;
   margin: 0px;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   background-color: #007356;
 

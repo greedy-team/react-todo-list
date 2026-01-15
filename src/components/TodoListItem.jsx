@@ -51,9 +51,8 @@ const BlankBoxIcon = styled(MdCheckBoxOutlineBlank)`
 `;
 
 const CheckedBoxIcon = styled(MdCheckBox)`
-  font-size: 22px;
-
   color: #007356;
+  font-size: 22px;
 `;
 
 const Text = styled.span`
@@ -80,8 +79,8 @@ const DeleteButton = styled.button`
 `;
 
 const DeleteIcon = styled(MdRemoveCircleOutline)`
-  font-size: 22px;
   color: red;
+  font-size: 22px;
 
   &:hover {
     color: #ff5454;

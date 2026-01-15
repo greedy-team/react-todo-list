@@ -51,10 +51,10 @@ export default App;
 const MainContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  background: #bdbfc1;
 
   display: flex;
   justify-content: center;
   align-items: center;
   
+  background-color: #bdbfc1;
 `;
