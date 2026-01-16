@@ -7,9 +7,7 @@ export default function TodoList({ todos, removeTodo, toggleTodoChecked }) {
       {todos.map((todo) => (
         <TodoListItem
           key={todo.id}
-          id={todo.id}
-          text={todo.text}
-          checked={todo.checked}
+          todo={todo}
           removeTodo={removeTodo}
           toggleTodoChecked={toggleTodoChecked}
         />

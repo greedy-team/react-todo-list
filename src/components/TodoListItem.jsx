@@ -5,32 +5,26 @@ import {
   MdRemoveCircleOutline,
 } from "react-icons/md";
 
-export default function TodoListItem({
-  id,
-  text,
-  checked,
-  removeTodo,
-  toggleTodoChecked,
-}) {
+export default function TodoListItem({ todo, removeTodo, toggleTodoChecked }) {
   return (
     <Item>
       <CheckboxAndText>
         <CheckButton
-          onClick={() => toggleTodoChecked(id)}
-          aria-checked={checked}
-          aria-label={checked ? "할 일 체크 해제" : "할 일 체크"}
+          onClick={() => toggleTodoChecked(todo.id)}
+          aria-checked={todo.checked}
+          aria-label={todo.checked ? "할 일 체크 해제" : "할 일 체크"}
         >
-          {checked ? (
+          {todo.checked ? (
             <MdCheckBox size="24" color="var(--greedyColor)" />
           ) : (
             <MdCheckBoxOutlineBlank size="24" />
           )}
         </CheckButton>
-        <TodoText checked={checked}>{text}</TodoText>
+        <TodoText checked={todo.checked}>{todo.text}</TodoText>
       </CheckboxAndText>
       <RemoveButton
         onClick={() => {
-          removeTodo(id);
+          removeTodo(todo.id);
         }}
         aria-label="할 일 삭제"
       >
