@@ -46,6 +46,11 @@ const InsertInput = styled.input`
   line-height: 1.5;
   outline: none;
   padding: 0.5rem;
+
+  &:focus {
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+  }
 `;
 
 const InsertButton = styled.button`
