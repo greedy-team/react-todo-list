@@ -11,6 +11,7 @@ export default function TodoListItem({ todo, removeTodo, toggleTodoChecked }) {
       <CheckboxAndText>
         <CheckButton
           onClick={() => toggleTodoChecked(todo.id)}
+          role="checkbox"
           aria-checked={todo.checked}
           aria-label={todo.checked ? "할 일 체크 해제" : "할 일 체크"}
         >
