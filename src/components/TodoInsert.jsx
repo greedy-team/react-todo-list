@@ -3,13 +3,13 @@ import styled from "styled-components";
 import { useState } from "react";
 
 export default function TodoInsert({ addTodo }) {
-  const [value, setValue] = useState("");
+  const [InputValue, setInputValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (value.trim()) {
-      addTodo(value);
-      setValue("");
+    if (InputValue.trim()) {
+      addTodo(InputValue);
+      setInputValue("");
     }
   };
 
@@ -19,8 +19,8 @@ export default function TodoInsert({ addTodo }) {
       <InsertInput
         id="todo-input"
         placeholder="할 일을 입력하세요"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={InputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         autoComplete="off"
       />
       <InsertButton type="submit" aria-label="할 일 추가">
