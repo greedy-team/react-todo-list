@@ -33,7 +33,7 @@ function App() {
   };
 
   return (
-    <MainContainer>
+    <Wrapper>
       <TodoTemplate>
         <TodoInsert addNewTodo={addNewTodo} />
         <TodoList
@@ -42,13 +42,13 @@ function App() {
           toggleTodoCheckedById={toggleTodoCheckedById}
         />
       </TodoTemplate>
-    </MainContainer>
+    </Wrapper>
   );
 }
 
 export default App;
 
-const MainContainer = styled.div`
+const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
 

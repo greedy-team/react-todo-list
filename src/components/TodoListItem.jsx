@@ -64,7 +64,7 @@ const CheckedBoxIcon = styled(MdCheckBox)`
 const TodoItemText = styled.span`
   font-size: 18px;
   text-align: left;
-  word-break: break-all;
+  overflow-wrap: break-word;
 
   flex: 1;
 
