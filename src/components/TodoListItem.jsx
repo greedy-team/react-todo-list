@@ -9,34 +9,34 @@ export default function TodoListItem({ todo, deleteTodoById, toggleTodoCheckedBy
     deleteTodoById(todo.id);
   };
   return (
-    <Container>
-      <TextCheckBoxButton
+    <TodoItemContainer>
+      <CheckBoxButton
         onClick={handleTextCheckBoxClick}
         aria-label={todo.checked ? `${todo.text} 체크 해제` : `${todo.text} 체크`}
       >
         {!todo.checked && <BlankBoxIcon />}
         {todo.checked && <CheckedBoxIcon />}
-        <Text $checked={todo.checked}>
+        <TodoItemText $checked={todo.checked}>
           {todo.text}
-        </Text>
-      </TextCheckBoxButton>
+        </TodoItemText>
+      </CheckBoxButton>
       <DeleteButton
         onClick={handleDeleteButtonClick}
         aria-label={`${todo.text} 삭제`}
       >
         <DeleteIcon />
       </DeleteButton>
-    </Container>
+    </TodoItemContainer>
   );
 }
 
-const Container = styled.li`
+const TodoItemContainer = styled.li`
   display: flex;
   flex-direction: row;
 
 `;
 
-const TextCheckBoxButton = styled.button`
+const CheckBoxButton = styled.button`
   border: none;
   border-radius: 0px;
 
@@ -61,7 +61,7 @@ const CheckedBoxIcon = styled(MdCheckBox)`
   font-size: 22px;
 `;
 
-const Text = styled.span`
+const TodoItemText = styled.span`
   font-size: 18px;
   text-align: left;
   word-break: break-all;

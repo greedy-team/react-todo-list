@@ -3,24 +3,24 @@ import greedyIcon from '../assets/greedySquareImage.jpg';
 
 export default function TodoTemplate({ children }) {
   return (
-    <Wrapper>
-      <Title>
+    <TodoWrapper>
+      <TodoTitle>
         <img src={greedyIcon} alt="그리디 로고" />
         일정관리
-      </Title>
+      </TodoTitle>
       {children}
-    </Wrapper>
+    </TodoWrapper>
   );
 }
 
-const Wrapper = styled.div`
+const TodoWrapper = styled.div`
   border: none;
   border-radius: 5px;
 
   overflow: hidden;
 `;
 
-const Title = styled.h1`
+const TodoTitle = styled.h1`
   color: white;
   font-size: 27px;
   font-weight: normal;

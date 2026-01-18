@@ -7,36 +7,38 @@ export default function TodoInsert({ addNewTodo }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue === '') {
+
+    const trimmedValue = inputValue.trim();
+    if (trimmedValue === '') {
       return;
     }
-    addNewTodo(inputValue);
+    addNewTodo(trimmedValue);
     setInputValue('');
   };
 
   return (
-    <Container onSubmit={handleSubmit}>
-      <Input
+    <InsertForm onSubmit={handleSubmit}>
+      <TextInput
         type="text"
         placeholder="할 일을 입력하세요"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <Button aria-label={inputValue === '' ? '할 일 추가' : `${inputValue} 추가`}>
+      <InsertButton aria-label={inputValue === '' ? '할 일 추가' : `${inputValue} 추가`}>
         <PlusIcon />
-      </Button>
-    </Container>
+      </InsertButton>
+    </InsertForm>
   );
 }
 
-const Container = styled.form`
+const InsertForm = styled.form`
   height: 45px;
   width: 500px;
 
   display: flex;
 `;
 
-const Input = styled.input`
+const TextInput = styled.input`
   color: white;
   font-size: 18px;
 
@@ -49,7 +51,7 @@ const Input = styled.input`
   background-color: #373737;
 `;
 
-const Button = styled.button`
+const InsertButton = styled.button`
   border: none;
   border-radius: 0px;
 

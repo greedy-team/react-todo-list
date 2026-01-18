@@ -3,7 +3,7 @@ import TodoListItem from './TodoListItem';
 
 export default function TodoList({ todoList, deleteTodoById, toggleTodoCheckedById }) {
   return (
-    <Container>
+    <TodoListContainer>
       {todoList.map((todo) => (
         <TodoListItem
           key={todo.id}
@@ -12,11 +12,11 @@ export default function TodoList({ todoList, deleteTodoById, toggleTodoCheckedBy
           toggleTodoCheckedById={toggleTodoCheckedById}
         />
       ))}
-    </Container>
+    </TodoListContainer>
   );
 }
 
-const Container = styled.div` 
+const TodoListContainer = styled.div` 
   min-height: 300px;
   max-height: 540px;
   width: 500px;
