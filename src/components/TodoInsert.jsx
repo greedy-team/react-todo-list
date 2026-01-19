@@ -8,8 +8,9 @@ export default function TodoInsert({ addTodo }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const value = inputRef.current.value;
-    if (value.trim()) {
-      addTodo(value);
+    const trimmedValue = value.trim();
+    if (trimmedValue) {
+      addTodo(trimmedValue);
       inputRef.current.value = "";
     }
   };
