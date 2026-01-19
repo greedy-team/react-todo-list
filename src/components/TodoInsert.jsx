@@ -1,15 +1,16 @@
 import { MdAdd } from "react-icons/md";
 import styled from "styled-components";
-import { useState } from "react";
+import { useRef } from "react";
 
 export default function TodoInsert({ addTodo }) {
-  const [InputValue, setInputValue] = useState("");
+  const inputRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (InputValue.trim()) {
-      addTodo(InputValue);
-      setInputValue("");
+    const value = inputRef.current.value;
+    if (value.trim()) {
+      addTodo(value);
+      inputRef.current.value = "";
     }
   };
 
@@ -17,10 +18,9 @@ export default function TodoInsert({ addTodo }) {
     <InsertForm onSubmit={handleSubmit}>
       <VisuallyHidden htmlFor="todo-input">할 일 입력</VisuallyHidden>
       <InsertInput
+        ref={inputRef}
         id="todo-input"
         placeholder="할 일을 입력하세요"
-        value={InputValue}
-        onChange={(e) => setInputValue(e.target.value)}
         autoComplete="off"
       />
       <InsertButton type="submit" aria-label="할 일 추가">

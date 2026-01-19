@@ -14,6 +14,7 @@ export default function TodoListItem({ todo, removeTodo, toggleTodoChecked }) {
           role="checkbox"
           aria-checked={todo.checked}
           aria-label={todo.checked ? "할 일 체크 해제" : "할 일 체크"}
+          aria-labelledby={`todo-text-${todo.id}`}
         >
           {todo.checked ? (
             <MdCheckBox size="24" color="var(--greedyColor)" />
@@ -21,7 +22,9 @@ export default function TodoListItem({ todo, removeTodo, toggleTodoChecked }) {
             <MdCheckBoxOutlineBlank size="24" />
           )}
         </CheckButton>
-        <TodoText checked={todo.checked}>{todo.text}</TodoText>
+        <TodoText id={`todo-text-${todo.id}`} checked={todo.checked}>
+          {todo.text}
+        </TodoText>
       </CheckboxAndText>
       <RemoveButton
         onClick={() => {
