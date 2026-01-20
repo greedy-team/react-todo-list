@@ -8,7 +8,7 @@ export default function App() {
   const [todos, setTodos] = useState([]);
   const nextId = useRef(1);
 
-  const onInsert = (text) => {
+  const addTodo = (text) => {
     const todo = {
       id: nextId.current,
       text,
@@ -18,15 +18,15 @@ export default function App() {
     nextId.current += 1;
   };
 
-  const onRemove = (id) => {
+  const removeTodo = (id) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
 
-  const onToggle = (id) => {
+  const toggleTodo = (id) => {
     setTodos((prev) =>
       prev.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo
-      )
+        todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+      ),
     );
   };
 
@@ -34,8 +34,8 @@ export default function App() {
     <>
       <GlobalStyle />
       <TodoTemplate>
-        <TodoInsert onInsert={onInsert} />
-        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
+        <TodoInsert onInsert={addTodo} />
+        <TodoList todos={todos} onRemove={removeTodo} onToggle={toggleTodo} />
       </TodoTemplate>
     </>
   );

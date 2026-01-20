@@ -2,14 +2,14 @@ import { useState } from "react";
 import styled from "styled-components";
 import { MdAdd } from "react-icons/md";
 
-export default function TodoInsert({ onInsert }) {
+export default function TodoInsert({ addTodo }) {
   const [value, setValue] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
     const text = value.trim();
     if (!text) return;
-    onInsert(text);
+    addTodo(text);
     setValue("");
   };
 
