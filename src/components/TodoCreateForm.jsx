@@ -20,7 +20,7 @@ export default function TodoCreateForm({ addTodo }) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <Button type="submit" aria-label="추가">
+      <Button type="submit" aria-label="할 일 추가">
         <MdAdd />
       </Button>
     </TodoInsertBlock>
