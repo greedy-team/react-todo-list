@@ -5,6 +5,25 @@ import {
   MdRemoveCircleOutline,
 } from "react-icons/md";
 
+export default function TodoListItem({ todo, onRemove, onToggle }) {
+  const { id, text, checked } = todo;
+
+  return (
+    <Item>
+      <CheckBox onClick={() => onToggle(id)}>
+        <Icon $checked={checked}>
+          {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+        </Icon>
+        <Text $checked={checked}>{text}</Text>
+      </CheckBox>
+
+      <Remove onClick={() => onRemove(id)}>
+        <MdRemoveCircleOutline />
+      </Remove>
+    </Item>
+  );
+}
+
 const Item = styled.div`
   align-items: center;
   display: flex;
@@ -59,22 +78,3 @@ const Remove = styled.div`
     color: #ff8787;
   }
 `;
-
-export default function TodoListItem({ todo, onRemove, onToggle }) {
-  const { id, text, checked } = todo;
-
-  return (
-    <Item>
-      <CheckBox onClick={() => onToggle(id)}>
-        <Icon $checked={checked}>
-          {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
-        </Icon>
-        <Text $checked={checked}>{text}</Text>
-      </CheckBox>
-
-      <Remove onClick={() => onRemove(id)}>
-        <MdRemoveCircleOutline />
-      </Remove>
-    </Item>
-  );
-}

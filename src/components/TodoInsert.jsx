@@ -2,6 +2,31 @@ import { useState } from "react";
 import styled from "styled-components";
 import { MdAdd } from "react-icons/md";
 
+export default function TodoInsert({ onInsert }) {
+  const [value, setValue] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const text = value.trim();
+    if (!text) return;
+    onInsert(text);
+    setValue("");
+  };
+
+  return (
+    <TodoInsertBlock onSubmit={onSubmit}>
+      <Input
+        placeholder="할 일을 입력하세요"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <Button type="submit" aria-label="추가">
+        <MdAdd />
+      </Button>
+    </TodoInsertBlock>
+  );
+}
+
 const TodoInsertBlock = styled.form`
   background-color: #495057;
   display: flex;
@@ -41,28 +66,3 @@ const Button = styled.button`
     background: #adb5bd;
   }
 `;
-
-export default function TodoInsert({ onInsert }) {
-  const [value, setValue] = useState("");
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const text = value.trim();
-    if (!text) return;
-    onInsert(text);
-    setValue("");
-  };
-
-  return (
-    <TodoInsertBlock onSubmit={onSubmit}>
-      <Input
-        placeholder="할 일을 입력하세요"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-      <Button type="submit" aria-label="추가">
-        <MdAdd />
-      </Button>
-    </TodoInsertBlock>
-  );
-}

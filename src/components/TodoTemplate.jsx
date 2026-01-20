@@ -1,6 +1,21 @@
 import styled from "styled-components";
 import greedySquareImage from "../assets/greedySquareImage.jpg";
 
+export default function TodoTemplate({ children }) {
+  return (
+    <Page>
+      <TodoTemplateBlock>
+        <AppTitle>
+          <GreedyLogo src={greedySquareImage} alt="greedyLogo" />
+          <p>일정관리</p>
+        </AppTitle>
+
+        <Content>{children}</Content>
+      </TodoTemplateBlock>
+    </Page>
+  );
+}
+
 const Page = styled.div`
   min-height: 100vh;
   background: #bdbdbd;
@@ -35,18 +50,3 @@ const GreedyLogo = styled.img`
 const Content = styled.div`
   background: #ffffff;
 `;
-
-export default function TodoTemplate({ children }) {
-  return (
-    <Page>
-      <TodoTemplateBlock>
-        <AppTitle>
-          <GreedyLogo src={greedySquareImage} alt="greedyLogo" />
-          <p>일정관리</p>
-        </AppTitle>
-
-        <Content>{children}</Content>
-      </TodoTemplateBlock>
-    </Page>
-  );
-}

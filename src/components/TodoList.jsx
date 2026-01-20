@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import TodoListItem from "./TodoListItem";
 
-const TodoListBlock = styled.div`
-  max-height: 513px;
-  min-height: 320px;
-  overflow-y: auto;
-`;
-
 export default function TodoList({ todos, onRemove, onToggle }) {
   return (
     <TodoListBlock>
@@ -21,3 +15,9 @@ export default function TodoList({ todos, onRemove, onToggle }) {
     </TodoListBlock>
   );
 }
+
+const TodoListBlock = styled.div`
+  max-height: 513px;
+  min-height: 320px;
+  overflow-y: auto;
+`;
