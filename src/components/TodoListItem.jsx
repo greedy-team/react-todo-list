@@ -8,18 +8,32 @@ import {
 export default function TodoListItem({ todo, removeTodo, toggleTodo }) {
   const { id, text, checked } = todo;
 
+  const inputId = `todo-${id}`;
+
   return (
     <Item>
-      <CheckBox onClick={() => toggleTodo(id)}>
-        <Icon $checked={checked}>
+      <CheckLabel htmlFor={inputId}>
+        <HiddenCheckbox
+          id={inputId}
+          type="checkbox"
+          checked={checked}
+          onChange={() => toggleTodo(id)}
+        />
+
+        <Icon $checked={checked} aria-hidden="true">
           {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
         </Icon>
-        <Text $checked={checked}>{text}</Text>
-      </CheckBox>
 
-      <Remove onClick={() => removeTodo(id)}>
+        <Text $checked={checked}>{text}</Text>
+      </CheckLabel>
+
+      <RemoveButton
+        type="button"
+        onClick={() => removeTodo(id)}
+        aria-label="할 일 삭제"
+      >
         <MdRemoveCircleOutline />
-      </Remove>
+      </RemoveButton>
     </Item>
   );
 }
@@ -30,7 +44,7 @@ const Item = styled.div`
   padding: 1rem;
 `;
 
-const CheckBox = styled.div`
+const CheckLabel = styled.label`
   align-items: center;
   cursor: pointer;
   display: flex;
@@ -39,6 +53,18 @@ const CheckBox = styled.div`
   svg {
     font-size: 1.5rem;
   }
+`;
+
+const HiddenCheckbox = styled.input`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 `;
 
 const Icon = styled.div`
@@ -67,12 +93,15 @@ const Text = styled.div`
     `}
 `;
 
-const Remove = styled.div`
+const RemoveButton = styled.button`
   align-items: center;
+  background: none;
+  border: 0;
   color: #ff6b6b;
   cursor: pointer;
   display: flex;
   font-size: 1.5rem;
+  padding: 0;
 
   &:hover {
     color: #ff8787;
