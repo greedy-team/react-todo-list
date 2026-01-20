@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import GlobalStyle from "./styles/GlobalStyle";
 import TodoTemplate from "./components/TodoTemplate";
-import TodoInsert from "./components/TodoInsert";
+import TodoCreateForm from "./components/TodoCreateForm";
 import TodoList from "./components/TodoList";
 
 export default function App() {
@@ -34,7 +34,7 @@ export default function App() {
     <>
       <GlobalStyle />
       <TodoTemplate>
-        <TodoInsert onInsert={addTodo} />
+        <TodoCreateForm onInsert={addTodo} />
         <TodoList todos={todos} onRemove={removeTodo} onToggle={toggleTodo} />
       </TodoTemplate>
     </>
