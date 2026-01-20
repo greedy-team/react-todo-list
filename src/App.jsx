@@ -34,8 +34,12 @@ export default function App() {
     <>
       <GlobalStyle />
       <TodoTemplate>
-        <TodoCreateForm onInsert={addTodo} />
-        <TodoList todos={todos} onRemove={removeTodo} onToggle={toggleTodo} />
+        <TodoCreateForm addTodo={addTodo} />
+        <TodoList
+          todos={todos}
+          removeTodo={removeTodo}
+          toggleTodo={toggleTodo}
+        />
       </TodoTemplate>
     </>
   );

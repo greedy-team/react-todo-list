@@ -8,8 +8,8 @@ export default function TodoList({ todos, removeTodo, toggleTodo }) {
         <TodoListItem
           key={todo.id}
           todo={todo}
-          onRemove={removeTodo}
-          onToggle={toggleTodo}
+          removeTodo={removeTodo}
+          toggleTodo={toggleTodo}
         />
       ))}
     </TodoListBlock>
