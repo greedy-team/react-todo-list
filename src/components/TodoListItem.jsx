@@ -33,7 +33,6 @@ export default function TodoListItem({ todo, deleteTodoById, toggleTodoCheckedBy
 const TodoItemContainer = styled.li`
   display: flex;
   flex-direction: row;
-
 `;
 
 const CheckBoxButton = styled.button`
@@ -64,9 +63,14 @@ const CheckedBoxIcon = styled(MdCheckBox)`
 const TodoItemText = styled.span`
   font-size: 18px;
   text-align: left;
-  overflow-wrap: break-word;
+  word-break: break-all;
 
   flex: 1;
+  
+  min-height: 60px;
+  max-height: 180px;
+
+  overflow-y: auto;
 
   ${(props) => (
     props.$checked

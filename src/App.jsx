@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import TodoTemplate from './components/TodoTemplate';
 import TodoInsert from './components/TodoInsert';
@@ -6,13 +6,15 @@ import TodoList from './components/TodoList';
 
 function App() {
   const [todoList, setTodoList] = useState([]);
+  const todoId = useRef(1);
 
   const addNewTodo = (newTodoText) => {
     const newTodo = {
-      id: Date.now(),
+      id: todoId.current,
       text: newTodoText,
       checked: false,
     };
+    todoId.current += 1;
     const newTodoList = [...todoList, newTodo];
     setTodoList(newTodoList);
   };
