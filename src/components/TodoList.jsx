@@ -1,20 +1,45 @@
 import styled from "styled-components";
+import React from "react";
+import { AutoSizer, List } from "react-virtualized";
 import TodoListItem from "./TodoListItem";
 
-export default function TodoList({ todos, removeTodo, toggleTodoChecked }) {
-  return (
-    <Container>
-      {todos.map((todo) => (
+export default React.memo(function TodoList({
+  todos,
+  removeTodo,
+  toggleTodoChecked,
+}) {
+  const rowHeight = 59;
+
+  const rowRenderer = ({ index, key, style }) => {
+    const todo = todos[index];
+    return (
+      <div key={key} style={style}>
         <TodoListItem
-          key={todo.id}
           todo={todo}
           removeTodo={removeTodo}
           toggleTodoChecked={toggleTodoChecked}
         />
-      ))}
+      </div>
+    );
+  };
+
+  return (
+    <Container>
+      <AutoSizer>
+        {({ width, height }) => (
+          <List
+            width={width}
+            height={height}
+            rowCount={todos.length}
+            rowHeight={rowHeight}
+            rowRenderer={rowRenderer}
+            overscanRowCount={5}
+          />
+        )}
+      </AutoSizer>
     </Container>
   );
-}
+});
 
 const Container = styled.div`
   min-height: 320px;

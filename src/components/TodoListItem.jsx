@@ -1,11 +1,16 @@
 import styled from "styled-components";
+import React from "react";
 import {
   MdCheckBoxOutlineBlank,
   MdCheckBox,
   MdRemoveCircleOutline,
 } from "react-icons/md";
 
-export default function TodoListItem({ todo, removeTodo, toggleTodoChecked }) {
+export default React.memo(function TodoListItem({
+  todo,
+  removeTodo,
+  toggleTodoChecked,
+}) {
   return (
     <Item>
       <CheckboxAndText>
@@ -36,7 +41,7 @@ export default function TodoListItem({ todo, removeTodo, toggleTodoChecked }) {
       </RemoveButton>
     </Item>
   );
-}
+});
 
 const Item = styled.div`
   display: flex;
