@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useRef } from 'react';
+import styled from 'styled-components';
+import TodoTemplate from './components/TodoTemplate';
+import TodoInsert from './components/TodoInsert';
+import TodoList from './components/TodoList';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todoList, setTodoList] = useState([]);
+  const todoId = useRef(1);
+
+  const addNewTodo = (newTodoText) => {
+    const newTodo = {
+      id: todoId.current,
+      text: newTodoText,
+      checked: false,
+    };
+    todoId.current += 1;
+    const newTodoList = [...todoList, newTodo];
+    setTodoList(newTodoList);
+  };
+
+  const deleteTodoById = (id) => {
+    const removedTodoList = todoList.filter((todo) => (todo.id !== id));
+    setTodoList(removedTodoList);
+  };
+
+  const toggleTodoCheckedById = (id) => {
+    const changedTodoList = todoList.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, checked: !todo.checked };
+      }
+      return todo;
+    });
+    setTodoList(changedTodoList);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Wrapper>
+      <TodoTemplate>
+        <TodoInsert addNewTodo={addNewTodo} />
+        <TodoList
+          todoList={todoList}
+          deleteTodoById={deleteTodoById}
+          toggleTodoCheckedById={toggleTodoCheckedById}
+        />
+      </TodoTemplate>
+    </Wrapper>
+  );
 }
 
-export default App
+export default App;
+
+const Wrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  background-color: #bdbfc1;
+`;
