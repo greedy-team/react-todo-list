@@ -4,9 +4,21 @@ import TodoTemplate from './components/TodoTemplate';
 import TodoInsert from './components/TodoInsert';
 import TodoList from './components/TodoList';
 
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i < 2500; i += 1) {
+    array.push({
+      id: i,
+      text: `할 일${i}`,
+      checked: false,
+    });
+  }
+  return array;
+}
+
 function App() {
-  const [todoList, setTodoList] = useState([]);
-  const todoId = useRef(1);
+  const [todoList, setTodoList] = useState(createBulkTodos());
+  const todoId = useRef(2500);
 
   const addNewTodo = (newTodoText) => {
     const newTodo = {
