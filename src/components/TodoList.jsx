@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useCallback } from "react";
 import { AutoSizer, List } from "react-virtualized";
 import TodoListItem from "./TodoListItem";
 
@@ -10,18 +10,21 @@ export default React.memo(function TodoList({
 }) {
   const rowHeight = 59;
 
-  const rowRenderer = ({ index, key, style }) => {
-    const todo = todos[index];
-    return (
-      <div key={key} style={style}>
-        <TodoListItem
-          todo={todo}
-          removeTodo={removeTodo}
-          toggleTodoChecked={toggleTodoChecked}
-        />
-      </div>
-    );
-  };
+  const rowRenderer = useCallback(
+    ({ index, key, style }) => {
+      const todo = todos[index];
+      return (
+        <div key={key} style={style}>
+          <TodoListItem
+            todo={todo}
+            removeTodo={removeTodo}
+            toggleTodoChecked={toggleTodoChecked}
+          />
+        </div>
+      );
+    },
+    [todos, removeTodo, toggleTodoChecked],
+  );
 
   return (
     <Container>

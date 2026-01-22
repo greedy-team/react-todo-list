@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useCallback } from "react";
 import {
   MdCheckBoxOutlineBlank,
   MdCheckBox,
@@ -11,11 +11,19 @@ export default React.memo(function TodoListItem({
   removeTodo,
   toggleTodoChecked,
 }) {
+  const handleToggle = useCallback(() => {
+    toggleTodoChecked(todo.id);
+  }, [todo.id, toggleTodoChecked]);
+
+  const handleRemove = useCallback(() => {
+    removeTodo(todo.id);
+  }, [todo.id, removeTodo]);
+
   return (
     <Item>
       <CheckboxAndText>
         <CheckButton
-          onClick={() => toggleTodoChecked(todo.id)}
+          onClick={handleToggle}
           role="checkbox"
           aria-checked={todo.checked}
           aria-label={todo.checked ? "할 일 체크 해제" : "할 일 체크"}
@@ -31,12 +39,7 @@ export default React.memo(function TodoListItem({
           {todo.text}
         </TodoText>
       </CheckboxAndText>
-      <RemoveButton
-        onClick={() => {
-          removeTodo(todo.id);
-        }}
-        aria-label="할 일 삭제"
-      >
+      <RemoveButton onClick={handleRemove} aria-label="할 일 삭제">
         <MdRemoveCircleOutline size="24" />
       </RemoveButton>
     </Item>
