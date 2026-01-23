@@ -4,9 +4,22 @@ import TodoTemplate from "./components/TodoTemplate";
 import TodoCreateForm from "./components/TodoCreateForm";
 import TodoList from "./components/TodoList";
 
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i < 5000; i++) {
+    array.push({
+      id: i,
+      text: `할 일${i}`,
+      checked: false,
+    });
+  }
+  return array;
+}
+
 export default function App() {
-  const [todos, setTodos] = useState([]);
-  const nextId = useRef(1);
+  const [todos, setTodos] = useState(createBulkTodos());
+
+  const nextId = useRef(5000);
 
   const addTodo = (text) => {
     const todo = {
