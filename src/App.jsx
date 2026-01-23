@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import GlobalStyle from "./styles/GlobalStyle";
 import TodoTemplate from "./components/TodoTemplate";
 import TodoCreateForm from "./components/TodoCreateForm";
@@ -31,17 +31,17 @@ export default function App() {
     nextId.current += 1;
   };
 
-  const removeTodo = (id) => {
+  const removeTodo = useCallback((id) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
-  };
+  }, []);
 
-  const toggleTodo = (id) => {
+  const toggleTodo = useCallback((id) => {
     setTodos((prev) =>
       prev.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo,
       ),
     );
-  };
+  }, []);
 
   return (
     <>
