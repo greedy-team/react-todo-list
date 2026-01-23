@@ -11,13 +11,8 @@ export default React.memo(function TodoListItem({
   removeTodo,
   toggleTodoChecked,
 }) {
-  const handleToggle = useCallback(() => {
-    toggleTodoChecked(todo.id);
-  }, [todo.id, toggleTodoChecked]);
-
-  const handleRemove = useCallback(() => {
-    removeTodo(todo.id);
-  }, [todo.id, removeTodo]);
+  const handleToggle = () => toggleTodoChecked(todo.id);
+  const handleRemove = () => removeTodo(todo.id);
 
   return (
     <Item>
