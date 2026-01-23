@@ -14,7 +14,7 @@ function TodoList({ todoList = [], deleteTodoById, toggleTodoCheckedById }) {
     toggleTodoCheckedById,
   }), [todoList, deleteTodoById, toggleTodoCheckedById]);
 
-  const Row = useCallback(
+  const TodoItem = useCallback(
     ({ index, style, todoList, deleteTodoById, toggleTodoCheckedById }) => {
       const todo = todoList[index];
       if (!todo) return <div style={style} />;
@@ -34,7 +34,7 @@ function TodoList({ todoList = [], deleteTodoById, toggleTodoCheckedById }) {
   return (
     <TodoListContainer>
       <List
-        rowComponent={Row}
+        rowComponent={TodoItem}
         rowCount={todoList.length}
         rowHeight={rowHeight}
         rowProps={rowProps}

@@ -37,6 +37,9 @@ export default React.memo(TodoListItem);
 const TodoItemContainer = styled.li`
   display: flex;
   flex-direction: row;
+
+  min-height: 60px;
+  max-height: 160px;
 `;
 
 const CheckBoxButton = styled.button`
@@ -75,9 +78,7 @@ const TodoItemText = styled.span`
   max-height: 130px;
   overflow-y: auto;
 
-  display: flex;
   align-items: center;
-
   ${(props) => (
     props.$checked
     && css`
