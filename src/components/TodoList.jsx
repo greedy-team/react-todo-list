@@ -1,10 +1,18 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { List, useDynamicRowHeight } from 'react-window';
 import TodoListItem from './TodoListItem';
 
+const listStyle = { width: 500, height: 480 };
+
 function TodoList({ todoList = [], deleteTodoById, toggleTodoCheckedById }) {
   const rowHeight = useDynamicRowHeight({ defaultRowHeight: 60 });
+
+  const rowProps = useMemo(() => ({
+    todoList,
+    deleteTodoById,
+    toggleTodoCheckedById,
+  }), [todoList, deleteTodoById, toggleTodoCheckedById]);
 
   const Row = useCallback(
     ({ index, style, todoList, deleteTodoById, toggleTodoCheckedById }) => {
@@ -29,8 +37,8 @@ function TodoList({ todoList = [], deleteTodoById, toggleTodoCheckedById }) {
         rowComponent={Row}
         rowCount={todoList.length}
         rowHeight={rowHeight}
-        rowProps={{ todoList, deleteTodoById, toggleTodoCheckedById }}
-        style={{ width: 500, height: 480 }}
+        rowProps={rowProps}
+        style={listStyle}
       />
     </TodoListContainer>
   );
