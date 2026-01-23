@@ -1,3 +1,4 @@
+import { memo, useCallback } from "react";
 import styled, { css } from "styled-components";
 import {
   MdCheckBoxOutlineBlank,
@@ -5,10 +6,17 @@ import {
   MdRemoveCircleOutline,
 } from "react-icons/md";
 
-export default function TodoListItem({ todo, removeTodo, toggleTodo }) {
+function TodoListItem({ todo, removeTodo, toggleTodo }) {
   const { id, text, checked } = todo;
-
   const inputId = `todo-${id}`;
+
+  const onToggle = useCallback(() => {
+    toggleTodo(id);
+  }, [toggleTodo, id]);
+
+  const onRemove = useCallback(() => {
+    removeTodo(id);
+  }, [removeTodo, id]);
 
   return (
     <Item>
@@ -17,7 +25,7 @@ export default function TodoListItem({ todo, removeTodo, toggleTodo }) {
           id={inputId}
           type="checkbox"
           checked={checked}
-          onChange={() => toggleTodo(id)}
+          onChange={onToggle}
         />
 
         <Icon $checked={checked} aria-hidden="true">
@@ -27,16 +35,14 @@ export default function TodoListItem({ todo, removeTodo, toggleTodo }) {
         <Text $checked={checked}>{text}</Text>
       </CheckLabel>
 
-      <RemoveButton
-        type="button"
-        onClick={() => removeTodo(id)}
-        aria-label="할 일 삭제"
-      >
+      <RemoveButton type="button" onClick={onRemove} aria-label="할 일 삭제">
         <MdRemoveCircleOutline />
       </RemoveButton>
     </Item>
   );
 }
+
+export default memo(TodoListItem);
 
 const Item = styled.div`
   align-items: center;
