@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import TodoTemplate from './components/TodoTemplate';
 import TodoInsert from './components/TodoInsert';
@@ -20,31 +20,28 @@ function App() {
   const [todoList, setTodoList] = useState(createBulkTodos());
   const todoId = useRef(2500);
 
-  const addNewTodo = (newTodoText) => {
+  const addNewTodo = useCallback((newTodoText) => {
     const newTodo = {
       id: todoId.current,
       text: newTodoText,
       checked: false,
     };
     todoId.current += 1;
-    const newTodoList = [...todoList, newTodo];
-    setTodoList(newTodoList);
-  };
+    setTodoList((prev) => [...prev, newTodo]);
+  }, []);
 
-  const deleteTodoById = (id) => {
-    const removedTodoList = todoList.filter((todo) => (todo.id !== id));
-    setTodoList(removedTodoList);
-  };
+  const deleteTodoById = useCallback((id) => {
+    setTodoList((prev) => prev.filter((todo) => todo.id !== id));
+  }, []);
 
-  const toggleTodoCheckedById = (id) => {
-    const changedTodoList = todoList.map((todo) => {
+  const toggleTodoCheckedById = useCallback((id) => {
+    setTodoList((prev) => prev.map((todo) => {
       if (todo.id === id) {
         return { ...todo, checked: !todo.checked };
       }
       return todo;
-    });
-    setTodoList(changedTodoList);
-  };
+    }));
+  }, []);
 
   return (
     <Wrapper>
