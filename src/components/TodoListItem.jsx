@@ -39,7 +39,7 @@ const CheckBoxButton = styled.button`
   border: none;
   border-radius: 0px;
 
-  padding: 18px;
+  padding: 15px;
   gap: 10px;
   
   display: flex;
@@ -67,10 +67,12 @@ const TodoItemText = styled.span`
 
   flex: 1;
   
-  min-height: 60px;
-  max-height: 180px;
-
+  min-height: 30px;
+  max-height: 130px;
   overflow-y: auto;
+
+  display: flex;
+  align-items: center;
 
   ${(props) => (
     props.$checked
