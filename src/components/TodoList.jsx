@@ -19,13 +19,13 @@ function TodoList({ todoList = [], deleteTodoById, toggleTodoCheckedById }) {
       const todo = todoList[index];
       if (!todo) return <div style={style} />;
       return (
-        <div style={style}>
+        <li style={style}>
           <TodoListItem
             todo={todo}
             deleteTodoById={deleteTodoById}
             toggleTodoCheckedById={toggleTodoCheckedById}
           />
-        </div>
+        </li>
       );
     },
     [],
@@ -34,6 +34,7 @@ function TodoList({ todoList = [], deleteTodoById, toggleTodoCheckedById }) {
   return (
     <TodoListContainer>
       <List
+        innerElementType="ul"
         rowComponent={TodoItem}
         rowCount={todoList.length}
         rowHeight={rowHeight}

@@ -34,7 +34,7 @@ function TodoListItem({ todo, deleteTodoById, toggleTodoCheckedById }) {
 
 export default React.memo(TodoListItem);
 
-const TodoItemContainer = styled.li`
+const TodoItemContainer = styled.div`
   display: flex;
   flex-direction: row;
 
