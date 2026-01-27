@@ -24,5 +24,6 @@ module.exports = {
       ["error",{devDependencies: ["**/vite.config.*", "**/vitest.config.*", "**/eslint.config.*", "**/*.config.js", ],},],
     "object-curly-newline": 
       ["error",{ "ImportDeclaration": { "minProperties": 10 } }],
+    "no-shadow": "off",
   },
 };

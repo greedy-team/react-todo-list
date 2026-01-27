@@ -1,27 +1,54 @@
+import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
+import { List, useDynamicRowHeight } from 'react-window';
 import TodoListItem from './TodoListItem';
 
-export default function TodoList({ todoList, deleteTodoById, toggleTodoCheckedById }) {
+const listStyle = { width: 500, height: 480 };
+
+function TodoList({ todoList = [], deleteTodoById, toggleTodoCheckedById }) {
+  const rowHeight = useDynamicRowHeight({ defaultRowHeight: 60 });
+
+  const rowProps = useMemo(() => ({
+    todoList,
+    deleteTodoById,
+    toggleTodoCheckedById,
+  }), [todoList, deleteTodoById, toggleTodoCheckedById]);
+
+  const TodoItem = useCallback(
+    ({ index, style, todoList, deleteTodoById, toggleTodoCheckedById }) => {
+      const todo = todoList[index];
+      if (!todo) return <div style={style} />;
+      return (
+        <li style={style}>
+          <TodoListItem
+            todo={todo}
+            deleteTodoById={deleteTodoById}
+            toggleTodoCheckedById={toggleTodoCheckedById}
+          />
+        </li>
+      );
+    },
+    [],
+  );
+
   return (
     <TodoListContainer>
-      {todoList.map((todo) => (
-        <TodoListItem
-          key={todo.id}
-          todo={todo}
-          deleteTodoById={deleteTodoById}
-          toggleTodoCheckedById={toggleTodoCheckedById}
-        />
-      ))}
+      <List
+        innerElementType="ul"
+        rowComponent={TodoItem}
+        rowCount={todoList.length}
+        rowHeight={rowHeight}
+        rowProps={rowProps}
+        style={listStyle}
+      />
     </TodoListContainer>
   );
 }
 
-const TodoListContainer = styled.div` 
-  min-height: 300px;
-  max-height: 600px;
+export default React.memo(TodoList);
+
+const TodoListContainer = styled.div`
+  height: 480px;
   width: 500px;
-
-  overflow-y: auto;
-
   background-color: white;
 `;

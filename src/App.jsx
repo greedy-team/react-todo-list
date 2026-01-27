@@ -1,38 +1,47 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import TodoTemplate from './components/TodoTemplate';
 import TodoInsert from './components/TodoInsert';
 import TodoList from './components/TodoList';
 
-function App() {
-  const [todoList, setTodoList] = useState([]);
-  const todoId = useRef(1);
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i < 2500; i += 1) {
+    array.push({
+      id: i,
+      text: `할 일${i}`,
+      checked: false,
+    });
+  }
+  return array;
+}
 
-  const addNewTodo = (newTodoText) => {
+function App() {
+  const [todoList, setTodoList] = useState(createBulkTodos());
+  const todoId = useRef(2500);
+
+  const addNewTodo = useCallback((newTodoText) => {
     const newTodo = {
       id: todoId.current,
       text: newTodoText,
       checked: false,
     };
     todoId.current += 1;
-    const newTodoList = [...todoList, newTodo];
-    setTodoList(newTodoList);
-  };
+    setTodoList((prev) => [...prev, newTodo]);
+  }, []);
 
-  const deleteTodoById = (id) => {
-    const removedTodoList = todoList.filter((todo) => (todo.id !== id));
-    setTodoList(removedTodoList);
-  };
+  const deleteTodoById = useCallback((id) => {
+    setTodoList((prev) => prev.filter((todo) => todo.id !== id));
+  }, []);
 
-  const toggleTodoCheckedById = (id) => {
-    const changedTodoList = todoList.map((todo) => {
+  const toggleTodoCheckedById = useCallback((id) => {
+    setTodoList((prev) => prev.map((todo) => {
       if (todo.id === id) {
         return { ...todo, checked: !todo.checked };
       }
       return todo;
-    });
-    setTodoList(changedTodoList);
-  };
+    }));
+  }, []);
 
   return (
     <Wrapper>
@@ -59,4 +68,8 @@ const Wrapper = styled.div`
   align-items: center;
   
   background-color: #bdbfc1;
+
+  *:focus-visible {
+    outline: auto;
+  }
 `;
