@@ -1,12 +1,25 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import GlobalStyle from "./styles/GlobalStyle";
 import TodoTemplate from "./components/TodoTemplate";
 import TodoCreateForm from "./components/TodoCreateForm";
 import TodoList from "./components/TodoList";
 
+function createBulkTodos() {
+  const array = [];
+  for (let i = 1; i < 5000; i++) {
+    array.push({
+      id: i,
+      text: `할 일${i}`,
+      checked: false,
+    });
+  }
+  return array;
+}
+
 export default function App() {
-  const [todos, setTodos] = useState([]);
-  const nextId = useRef(1);
+  const [todos, setTodos] = useState(createBulkTodos());
+
+  const nextId = useRef(5000);
 
   const addTodo = (text) => {
     const todo = {
@@ -18,17 +31,17 @@ export default function App() {
     nextId.current += 1;
   };
 
-  const removeTodo = (id) => {
+  const removeTodo = useCallback((id) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
-  };
+  }, []);
 
-  const toggleTodo = (id) => {
+  const toggleTodo = useCallback((id) => {
     setTodos((prev) =>
       prev.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo,
       ),
     );
-  };
+  }, []);
 
   return (
     <>
