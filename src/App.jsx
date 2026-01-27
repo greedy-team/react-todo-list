@@ -68,4 +68,8 @@ const Wrapper = styled.div`
   align-items: center;
   
   background-color: #bdbfc1;
+
+  *:focus-visible {
+    outline: auto;
+  }
 `;
