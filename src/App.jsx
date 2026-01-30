@@ -3,8 +3,20 @@ import TodoInsert from './components/Todos/TodoInsert.jsx';
 import TodoList from './components/Todos/TodoList.jsx';
 import { useState } from 'react';
 
+function createBulkTodos(){
+  const array = [];
+  for(let i=1;i<2500;i++){
+    array.push({
+      id : String(i),
+      text : `할 일${i}`,
+      isChecked: false,
+    });
+  }
+  return array;
+}
+
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(createBulkTodos);
 
   const onInsertTodo = (text) => {
     const newTodo = {
@@ -12,19 +24,19 @@ function App() {
       text,
       isChecked: false,
     };
-    setTodos([newTodo, ...todos]);
+    setTodos(prevTodos=>[newTodo, ...prevTodos]);
   };
 
   const onToggleCheckBox = (selectedTodoId) => {
     setTodos(
-      todos.map((todo) =>
+      prevTodos => prevTodos.map((todo) =>
         todo.id === selectedTodoId ? { ...todo, isChecked: !todo.isChecked } : todo,
       ),
     );
   };
 
   const onRemoveTodo = (selectedTodoId) => {
-    setTodos(todos.filter((todo) => todo.id !== selectedTodoId));
+    setTodos(prevTodos => prevTodos.filter((todo) => todo.id !== selectedTodoId));
   };
 
   return (

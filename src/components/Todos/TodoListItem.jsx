@@ -1,13 +1,14 @@
+import { memo } from 'react';
 import styled from 'styled-components';
 import {MdRemoveCircleOutline} from 'react-icons/md';
 import { BaseButton } from '../ui/BaseButton.jsx';
 import CheckBoxButton from './CheckBoxButton.jsx';
 import theme from '../../theme';
 
-const TodoListItem = ({todo}) => {
+const TodoListItem = memo(function TodoListItem({todo, style}) {
 
   return (
-    <TodoItem>
+    <TodoItem style={style} role="listitem">
       <CheckBoxButton
         checked={todo.isChecked}
         data-action="toggle"
@@ -24,11 +25,11 @@ const TodoListItem = ({todo}) => {
       </RemoveButton>
     </TodoItem>
   );
-};
+});
 
 export default TodoListItem;
 
-const TodoItem = styled.li`
+const TodoItem = styled.div`
   padding: 1rem;
   display: flex;
   align-items: center;

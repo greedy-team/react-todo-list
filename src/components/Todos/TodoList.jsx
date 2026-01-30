@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import 'react-virtualized/styles.css';
+import { useCallback } from 'react';
+import { List, AutoSizer } from 'react-virtualized';
 import  TodoListItem from './TodoListItem.jsx';
 
 const TodoList=({todos, onToggleCheckBox, onRemoveTodo})=>{
@@ -17,24 +20,44 @@ const TodoList=({todos, onToggleCheckBox, onRemoveTodo})=>{
     }
   };
 
+  const rowRenderer = useCallback(({ index, key, style }) => {
+    const todo = todos[index];
+    return (
+      <TodoListItem
+        todo={todo}
+        key={key}
+        style={style}
+      />
+    );
+  }, [todos]);
+
   return (
-    <TodoItems onClick={handleClick}>
-      {todos.map((todo)=>(
-        <TodoListItem key={todo.id} todo={todo} />
-      ))}
-    </TodoItems>
+    <VirtualListContainer onClick={handleClick}>
+      <AutoSizer>
+        {({ width, height }) => (
+          <List
+            width={width}
+            height={height}
+            rowHeight={57}
+
+            rowCount={todos.length}
+            rowRenderer={rowRenderer}
+
+            role="list"
+            aria-label="할 일 목록"
+            list={todos}
+          />
+        )}
+      </AutoSizer>
+    </VirtualListContainer>
   );
 };
 
 export default TodoList;
 
-const TodoItems = styled.ul`
-  display: flex;
-  flex-direction: column;
-  flex: 1;       
-  width: 100%;   
-  overflow-y: auto;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  `;
+const VirtualListContainer = styled.div`
+  flex: 1; 
+  width: 100%;
+  height: 100%; 
+  outline: none;
+`;
