@@ -1,16 +1,24 @@
 import styled from "styled-components";
+import React from "react";
 import {
   MdCheckBoxOutlineBlank,
   MdCheckBox,
   MdRemoveCircleOutline,
 } from "react-icons/md";
 
-export default function TodoListItem({ todo, removeTodo, toggleTodoChecked }) {
+export default React.memo(function TodoListItem({
+  todo,
+  removeTodo,
+  toggleTodoChecked,
+}) {
+  const handleToggle = () => toggleTodoChecked(todo.id);
+  const handleRemove = () => removeTodo(todo.id);
+
   return (
     <Item>
       <CheckboxAndText>
         <CheckButton
-          onClick={() => toggleTodoChecked(todo.id)}
+          onClick={handleToggle}
           role="checkbox"
           aria-checked={todo.checked}
           aria-label={todo.checked ? "할 일 체크 해제" : "할 일 체크"}
@@ -26,17 +34,12 @@ export default function TodoListItem({ todo, removeTodo, toggleTodoChecked }) {
           {todo.text}
         </TodoText>
       </CheckboxAndText>
-      <RemoveButton
-        onClick={() => {
-          removeTodo(todo.id);
-        }}
-        aria-label="할 일 삭제"
-      >
+      <RemoveButton onClick={handleRemove} aria-label="할 일 삭제">
         <MdRemoveCircleOutline size="24" />
       </RemoveButton>
     </Item>
   );
-}
+});
 
 const Item = styled.div`
   display: flex;
